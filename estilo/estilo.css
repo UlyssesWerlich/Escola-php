@@ -1,0 +1,43 @@
+body {
+    width: 900px;
+    margin: 30px auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu{
+    background-color: burlywood;
+    margin: 0 20px 0 0;
+    padding: 10px 20px 80px;
+    width: 200px;
+    height: 300px;
+    float: left;
+}
+
+.itens{
+    width: 150px;
+    padding: 10px;
+}
+
+p{
+    text-align: justify;
+}
+
+.formulario{
+    display: inline;
+    clear: left;
+}
+
+.campo{
+    background-color: cadetblue;
+    margin: 0 15px;
+    padding: 15px;
+}
+
+img{
+    height: 300px ;
+}
+
+.itens:hover{
+    background-color:white;
+    color: black;
+}
