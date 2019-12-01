@@ -7,28 +7,27 @@
             <form method='POST' action='consultaAluno.php'>
                 <p>Consulta por nome:</p>
                 <input type='text' size='40' name='nomeConsulta' placeholder='Escreva aqui o nome para consulta' />
-                <input type='submit' name='botao'/>
+                <input type='submit' name='botao' value='Consultar'/>
             </form>
         </div>
 
 <?php
 
     if (isset($_POST['nomeConsulta'])){
-
         try{
             $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
         }catch(PDOException $e){
             echo $e->getMessage();
         }
         $nomeConsulta = $_POST['nomeConsulta'];
-        $consultar=$pdo->prepare("select * from alunos where nome like '$nomeConsulta%';");
+        $consultar=$pdo->prepare("select * from aluno where nome like '$nomeConsulta%';");
         $consultar->execute();
     
         $result = $consultar->fetchAll();
         echo "<table border='1'>
                 <caption>Alunos</caption>
                     <tr>
-                        <td>ID</td>
+                        <td>Matrícula</td>
                         <td>Nome</td>
                         <td>Endereço</td>
                         <td>Turma</td>
@@ -40,7 +39,7 @@
             $dataConvertida = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];
             
             echo "<tr>
-                    <td><a href=editarAluno.php?id_alunos=$row[id_alunos]>$row[id_alunos]</a></td>
+                    <td><a href=alterarAluno.php?matricula=$row[matricula]>$row[matricula]</a></td>
                     <td>$row[nome]</td>
                     <td>$row[endereco]</td>
                     <td>$row[turma]</td>

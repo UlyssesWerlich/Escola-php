@@ -4,7 +4,7 @@
 ?>
 
     <div class="formulario">
-        <form name="form2" method="POST" action="alterarDados.php">
+        <form name="form2" method="POST" action="atualizarDadosAluno.php">
             <p>Nome:<br/>
                 <input type="text" name="nome"></p>  
             <p>Endereço:<br/>
@@ -18,7 +18,7 @@
             <p>Data de nascimento:<br>
                 <input type="date" name="dataNascimento"> </p>
             </p>
-            <input type="submit" name="Botao" value="Cadastrar">
+            <input type="submit" name="botao" value="Cadastrar">
         </form>
     </div>
 </body>
