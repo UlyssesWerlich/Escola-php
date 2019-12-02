@@ -4,52 +4,55 @@
 
 	<div class='bloco'>
 		<div class='titulo'>
-			<p>Alterar dados de Aluno</p>
+			<p>Alterar dados de Professor</p>
 		</div>
 
 <?php
 	$nome = $_POST['nome'];
 	$endereco = $_POST['endereco'];
-	$turma = $_POST['turma'];
+	$cpf = $_POST['cpf'];
+	$telefone = $_POST['telefone'];
+	$sexo = $_POST['sexo'];
 	$dataNascimento = $_POST['dataNascimento'];
+	$formacao = $_POST['formacao'];
 	$botao = $_POST['botao'];
 
 	if ($botao == 'Cadastrar'){
-		$turno = $_POST['turno'];
 		try{
 			$pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
 		}catch(PDOException $e){
 			echo $e->getMessage();
 		}
-		$inserir=$pdo->prepare("Insert into aluno(nome, endereco, turma, turno, dataNascimento) Values('$nome', '$endereco', '$turma', '$turno', '$dataNascimento');");
+		$inserir=$pdo->prepare("Insert into professor(
+			nome, endereco, cpf, telefone, sexo, dataNascimento, formacao) 
+			Values('$nome', '$endereco', '$cpf', '$telefone', '$sexo', '$dataNascimento', '$formacao');");
 		$inserir->execute();
 		$pdo = null;
-		echo "<p>Aluno adicionado com sucesso</p>";
+		echo "<p>Professor adicionado com sucesso</p>";
 
 	} elseif ($botao == 'Alterar'){
-		$matricula = $_POST['matricula'];
-		$turno = $_POST['turno'];
+		$idProfessor = $_POST['idProfessor'];
 		try{
 			$pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
 		}catch(PDOException $e){
 			echo $e->getMessage();
 		}
-		$inserir=$pdo->prepare("update aluno set nome='$nome', endereco='$endereco', turma='$turma', turno='$turno', dataNascimento='$dataNascimento' where matricula = $matricula;");
+		$inserir=$pdo->prepare("update professor set nome='$nome', endereco='$endereco', cpf='$cpf', telefone='$telefone', sexo='$sexo', dataNascimento='$dataNascimento', formacao='$formacao' where idProfessor = '$idProfessor';");
 		$inserir->execute();
 		$pdo = null;
 		echo "<p>Dados de $nome alterados com sucesso</p>";
 
 	} else {
-		$matricula = $_POST['matricula'];
+		$idProfessor = $_POST['idProfessor'];
 		try {
 			$pdo = new PDO("mysql:host=localhost;dbname=escola","root","password");
 		} catch (PDOException $e){
 			echo $e->getMessage();
 		}
-		$excluir = $pdo->prepare("delete from aluno where matricula = '$matricula'");
+		$excluir = $pdo->prepare("delete from professor where idProfessor = '$idProfessor'");
 		$excluir->execute();
 		$pdo = null;
-		echo "<p>Aluno excluído com sucesso</p>";
+		echo "<p>Professor excluído com sucesso</p>";
 	}
 
 
