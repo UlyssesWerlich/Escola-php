@@ -8,15 +8,16 @@
 
 <body>
     <div id="cabecalho">
-        <h1><?php echo $tituloCabecalho; ?></h1>
+        <p>Escola - Sistema de cadastro de pessoas</p>
     </div>
-
-    <ul class="menu">
-            <ul class="opcao"><a href="index.php">Página inicial</a></ul>
-            <ul class="submenu">Aluno</ul>
-            <ul class="opcao"><a href="cadastroAluno.php">Cadastro de Aluno</a></ul>
-            <ul class="opcao"><a href="consultaAluno.php">Consulta de Aluno</a></ul>
-            <ul class="submenu">Professor</ul>
-            <ul class="opcao"><a href="cadastroProfessor.php">Cadastro de Professor</a></ul>
-            <ul class="opcao"><a href="consultaProfessor.php">Consulta de Professor</a></ul>
-    </ul>
+    <div class='menu'>
+        <ul class="menu">
+                <ul class="opcao"><a href="index.php">Página inicial</a></ul>
+                <ul class="submenu">Aluno</ul>
+                <ul class="opcao"><a href="cadastroAluno.php">Cadastro de Aluno</a></ul>
+                <ul class="opcao"><a href="consultaAluno.php">Consulta de Aluno</a></ul>
+                <ul class="submenu">Professor</ul>
+                <ul class="opcao"><a href="cadastroProfessor.php">Cadastro de Professor</a></ul>
+                <ul class="opcao"><a href="consultaProfessor.php">Consulta de Professor</a></ul>
+        </ul>
+    </div>
