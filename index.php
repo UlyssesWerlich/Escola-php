@@ -2,9 +2,9 @@
     include('cabecalho.php');
 ?>
 
-    <div class='bloco'> 
-        <div class='titulo'>
-            <p id='titulo'>Bem vindo</p>
+            <div class='col-sm-9 bloco'>
+                <p>Bem vindo</p>
+            </div>
         </div>
     </div>
 </body>

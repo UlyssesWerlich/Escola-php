@@ -1,30 +1,57 @@
 <?php
     include('cabecalho.php');
 ?>
-    <div class='titulo'>
-        <p>Cadastro de Professor</p>
-    </div>
-    <div class='bloco'>
-        <div class="formulario">
-            <form name="form2" method="POST" action="atualizarDadosProfessor.php">
-                <p>Nome:<br/>
-                    <input type="text" name="nome"></p>  
-                <p>Endereço:<br/>
-                    <input type="text" name="endereco"></p>  
-                <p>CPF:<br/>
-                    <input type="text" name="cpf"></p> 
-                <p>Telefone:<br/>
-                    <input type="text" name="telefone"></p>
-                <p>Selecione o sexo do professor:<br/>
-                    <input class="campo" name="sexo" type="radio" value="M" checked>Masculino
-                    <input class="campo" name="sexo" type="radio" value="F">Feminino</p>   
-                <p>Data de nascimento:<br/>
-                    <input type="date" name="dataNascimento"> </p>
-                </p>
-                <p>Formação:</p>
-                <textarea name="formacao" rows='10' cols='80' placeholder="Escreva aqui a formação do professor e especialidades" ></textarea>
-                <p><input type="submit" name="botao" value="Cadastrar"></p>
-            </form>
+            <div class='col-sm-9 bloco'>
+                <p>Cadastro de Professor</p>
+
+                <form class="form-horizontal" name="form" method="POST" action="atualizarDadosProfessor.php">
+                    <div class='row'>
+                        <div class="form-group col-sm-8">
+                            <label class="control-label" for='nome'>Nome</label>
+                                <input type="text" name="nome" id="nome" class="form-control">
+                        </div>
+                    </div>
+                
+                    <div class='row'>
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='cpf'>CPF</label>
+                                <input type="text" name="cpf" id="cpf" class="form-control">
+
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='telefone'>Telefone</label>
+                                <input type="text" name="telefone" id="telefone" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="form-group col-sm-8">
+                            <label class="control-label" for='endereco'>Endereço</label>
+                            <input type="text" name="endereco" id="endereco" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='dataNascimento'>Data de nascimento</label>
+                            <input type="date" name="dataNascimento" id="dataNascimento" class="form-control">
+                        </div>
+
+                        <div class="radio col-sm-4">
+                            <label>Selecione o sexo do professor</label>
+                            <label><input class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
+                            <label><input class="optradio" name="sexo" type="radio" value="F">Feminino</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for='formacao'>Formação</label>
+                        <textarea placeholder="Escreva aqui a formação do professor e especialidades" name="formacao" id="formacao" rows='5' class="form-control"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
+                </form>
+            </div>
         </div>
     </div>
 </body>

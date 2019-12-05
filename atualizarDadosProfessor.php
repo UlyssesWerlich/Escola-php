@@ -2,10 +2,8 @@
     include('cabecalho.php');
 ?>
 
-	<div class='bloco'>
-		<div class='titulo'>
-			<p>Alterar dados de Professor</p>
-		</div>
+			<div class='col-sm-9 bloco'>
+                <p>Alterar dados de Professor</p>
 
 <?php
 	$nome = $_POST['nome'];
@@ -58,6 +56,8 @@
 
 	//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ?>
-	</div>
+            </div>
+        </div>
+    </div>
 </body>
-</html> 
+</html>

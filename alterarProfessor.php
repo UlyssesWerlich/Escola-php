@@ -12,10 +12,8 @@
     $consulta->execute();
     $resultado = $consulta->fetchAll();
 ?>
-    <div class='bloco'>
-        <div class='titulo'>
-            <p>Alterar dados de Professor</p>
-        </div>
+            <div class='col-sm-9 bloco'>
+                <p>Alterar dados de Professor</p>
         
 <?php
     foreach ($resultado as $row){
@@ -23,29 +21,59 @@
         $checkedM = ( $sexo == 'M')?('checked'):('');
         $checkedF = ( $sexo == 'F')?('checked'):('');
 ?>
-        <div class='formulario'>
-            <form name='form' method='POST' action='atualizarDadosProfessor.php'>
-                <p>Id do aluno</p>
-                    <input type='text' name='idProfessor' value='<?php echo "$row[idProfessor]"; ?>' readonly></p>
-                <p>Nome<br/>
-                    <input type='text' name='nome' value='<?php echo "$row[nome]"; ?>'></p>  
-                <p>Endereço<br/>
-                    <input type='text' name='endereco' value='<?php echo "$row[endereco]"; ?>'></p>  
-                <p>CPF:<br/>
-                    <input type='text' name='cpf' value='<?php echo "$row[cpf]"; ?>' ></p> 
-                <p>Telefone:<br/>
-                    <input type='text' name='telefone' value='<?php echo "$row[telefone]"; ?>'></p>
-                <p>Selecione o sexo do professor:<br/>
-                    <input class='campo' <?php echo "$checkedM"; ?> name='sexo' type='radio' value='M'>Masculino
-                    <input class='campo' <?php echo "$checkedF"; ?> name='sexo' type='radio' value='F'>Feminino</p>    
-                <p>Data de nascimento:<br>
-                    <input type='date' name='dataNascimento' value='<?php echo "$row[dataNascimento]"; ?>'> </p>
-                <p>Formação:</p>
-                    <textarea name='formacao' rows='10' cols='80' placeholder='<?php echo "$row[formacao]"; }; ?>' ></textarea>
+                <form class="form-horizontal" name="form" method="POST" action="atualizarDadosProfessor.php">
+                    <div class='row'>
+                        <div class="form-group col-sm-8">
+                            <label class="control-label" for='nome'>Nome</label>
+                                <input value='<?php echo "$row[nome]"; ?>' type="text" name="nome" id="nome" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-3">
+                            <label class="control-label" for='idProfessor'>Id do Professor</label>
+                                <input value='<?php echo "$row[idProfessor]"; ?>' type="text" name="idProfessor" id="idProfessor" class="form-control" readonly>
+                        </div>
+                    </div>
                 
-                <input type='submit' name='botao' value='Alterar'>
-                <input type='submit' name='botao' value='Excluir'>
-            </form>
+                    <div class='row'>
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='cpf'>CPF</label>
+                                <input value='<?php echo "$row[cpf]"; ?>' type="text" name="cpf" id="cpf" class="form-control">
+
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='telefone'>Telefone</label>
+                                <input value='<?php echo "$row[telefone]"; ?>' type="text" name="telefone" id="telefone" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="form-group col-sm-8">
+                            <label class="control-label" for='endereco'>Endereço</label>
+                            <input value='<?php echo "$row[endereco]"; ?>' type="text" name="endereco" id="endereco" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class='row'>
+                        <div class="form-group col-sm-4">
+                            <label class="control-label" for='dataNascimento'>Data de nascimento</label>
+                            <input value='<?php echo "$row[dataNascimento]"; ?>' type="date" name="dataNascimento" id="dataNascimento" class="form-control">
+                        </div>
+
+                        <div class="radio col-sm-4">
+                            <label>Selecione o sexo do professor</label>
+                            <label><input <?php echo "$checkedM"; ?> class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
+                            <label><input <?php echo "$checkedF"; ?> class="optradio" name="sexo" type="radio" value="F">Feminino</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for='formacao'>Formação</label>
+                        <textarea  placeholder='<?php echo "$row[formacao]";}; ?>' name="formacao" id="formacao" rows='5' cols='60' class="form-control"></textarea>
+                    </div>
+                    <input type='submit' name='botao' class="btn btn-primary" value='Alterar'>
+                    <input type='submit' name='botao' class="btn btn-danger" value='Excluir'>
+                </form>
+            </div>
         </div>
     </div>
 </body>

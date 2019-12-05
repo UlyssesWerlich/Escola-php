@@ -1,28 +1,25 @@
 <?php
     include('cabecalho.php');
 ?>
-    <div class='bloco'>
-        <div class='titulo'>
-            <p>Consulta de Professor</p>
-        </div>
-        <div class='formulario'>
-            <form method='POST' action='consultaProfessor.php'>
-                <p>Consulta por nome:</p>
-                <input type='text' size='40' name='nomeConsulta' placeholder='Escreva aqui o nome para consulta' />
-                <input type='submit' name='botao' value='Consultar'/>
-            </form>
-        </div>
-        <div class='tabela'>
-            <table border='1'>
-                <caption>Professor</caption>
-                    <tr>
-                        <td>ID</td>
-                        <td>Nome</td>
-                        <td>Endereço</td>
-                        <td>Telefone</td>
-                        <td>Sexo</td>
-                        <td>Data de Nascimento</td>
-                    </tr>
+            <div class='col-sm-9 bloco'>
+                <p>Consulta de Professor</p>
+                <form method='POST' action='consultaProfessor.php'>
+                    <div class="form-group">
+                        <input type='text' class="form-control" size='40' id='nomeConsulta' name='nomeConsulta' placeholder='Escreva aqui o nome para consulta' />
+                    </div>
+                    <input type='submit' class="btn btn-default" name='botao' value='Consultar'/>
+                </form>
+                <div>
+                    <table class='table'>
+                        <caption>Professor</caption>
+                            <tr>
+                                <td>ID</td>
+                                <td>Nome</td>
+                                <td>Endereço</td>
+                                <td>Telefone</td>
+                                <td>Sexo</td>
+                                <td>Data de Nascimento</td>
+                            </tr>
 <?php
     if (isset($_POST['nomeConsulta'])){
         try{
@@ -52,7 +49,8 @@
         $pdo = null;
     }
 ?>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 </body>
