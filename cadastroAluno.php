@@ -1,9 +1,7 @@
 <?php
+    $titulo = "Cadastro de Aluno";
     include('cabecalho.php');
-?>
-            <div class='col-sm-9 bloco'>
-                <p>Cadastro de Aluno</p>
-            
+?>            
                 <form name="form" method="POST" action="atualizarDadosAluno.php">
 
                     <div class='row'>
@@ -33,7 +31,7 @@
                             <input type="date" name="dataNascimento" id="dataNascimento" class="form-control">
                         </div>
                         
-                        <div class="checkbox col-sm-4">
+                        <div class="checkbox col-sm-3">
                             <label>Selecione o turno do aluno</label>
                             <label><input class="optradio" name="turno" type="radio" value="M"/>Matutivo</label>
                             <label><input class='optradio' name='turno' type='radio' value='V'/>Vespertino</label>
@@ -42,8 +40,7 @@
                     </div>
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+
+<?php
+    include('rodape.php');
+?>

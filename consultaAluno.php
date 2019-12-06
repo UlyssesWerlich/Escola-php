@@ -1,25 +1,27 @@
 <?php
+    $titulo = "Consulta de Aluno";
     include('cabecalho.php');
 ?>
-            <div class='col-sm-9 bloco'>
-                <p>Consulta de Aluno</p>
                 <form method='POST' action='consultaAluno.php'>
-                    <div class="form-group">
-                        <input type='text' class="form-control" size='40' id='nomeConsulta' name='nomeConsulta' placeholder='Escreva aqui o nome para consulta' />
+                    <div class='row'>
+                        <div class="form-group col-sm-8">
+                            <input type='text' class="form-control" size='40' id='nomeConsulta' name='nomeConsulta' placeholder='Escreva aqui o nome para consulta' />
+                        </div>
+                        <div class='form-group col-sm-2'>
+                            <input type='submit' class="btn btn-default" name='botao' value='Consultar'/>
+                        </div>
                     </div>
-                    <input type='submit' class="btn btn-default" name='botao' value='Consultar'/>
                 </form>
                 <div>
                     <table class='table'>
-                        <caption>Alunos</caption>
-                            <tr>
-                                <td>Matrícula</td>
-                                <td>Nome</td>
-                                <td>Endereço</td>
-                                <td>Turma</td>
-                                <td>Turno</td>
-                                <td>Data de Nascimento</td>
-                            </tr>
+                        <tr>
+                            <td>Matrícula</td>
+                            <td>Nome</td>
+                            <td>Endereço</td>
+                            <td>Turma</td>
+                            <td>Turno</td>
+                            <td>Data de Nascimento</td>
+                        </tr>
 <?php
 
     if (isset($_POST['nomeConsulta'])){
@@ -60,12 +62,10 @@
                     <td>$dataConvertida</td>
                 </tr>";
         } 
+        echo "</table>";
         $pdo = null;
     }
+    include('rodape.php');
 ?>
-                </table>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+                
+                

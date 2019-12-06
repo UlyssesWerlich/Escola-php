@@ -1,11 +1,7 @@
 <?php
+	$titulo = 'Alterar dados de Aluno';
     include('cabecalho.php');
-?>
 
-			<div class='col-sm-9 bloco'>
-                <p>Alterar dados de Aluno</p>
-
-<?php
 	$nome = $_POST['nome'];
 	$endereco = $_POST['endereco'];
 	$turma = $_POST['turma'];
@@ -53,8 +49,8 @@
 
 	//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ?>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+				<p><a href='consultaAluno.php'>Consultar Aluno</a></p>
+
+<?php
+    include('rodape.php');
+?>

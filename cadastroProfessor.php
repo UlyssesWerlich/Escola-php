@@ -1,9 +1,7 @@
 <?php
+    $titulo = "Cadastro de Professor";
     include('cabecalho.php');
 ?>
-            <div class='col-sm-9 bloco'>
-                <p>Cadastro de Professor</p>
-
                 <form class="form-horizontal" name="form" method="POST" action="atualizarDadosProfessor.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
@@ -38,7 +36,7 @@
                             <input type="date" name="dataNascimento" id="dataNascimento" class="form-control">
                         </div>
 
-                        <div class="radio col-sm-4">
+                        <div class="radio col-sm-3">
                             <label>Selecione o sexo do professor</label>
                             <label><input class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
                             <label><input class="optradio" name="sexo" type="radio" value="F">Feminino</label>
@@ -51,8 +49,6 @@
                     </div>
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+<?php
+    include('rodape.php');
+?>

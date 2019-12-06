@@ -1,6 +1,6 @@
 <?php
+    $titulo = 'Alterar dados de Professor';
     include('cabecalho.php');
-    $idProfessor = $_GET['idProfessor'];
 
     try {
         $pdo =new PDO("mysql:host=localhost;dbname=escola","root", "password");
@@ -8,14 +8,11 @@
         echo $e->getMessage();
     }
 
+    $idProfessor = $_GET['idProfessor'];
     $consulta = $pdo->prepare("select * from professor where idProfessor like '$idProfessor'");
     $consulta->execute();
     $resultado = $consulta->fetchAll();
-?>
-            <div class='col-sm-9 bloco'>
-                <p>Alterar dados de Professor</p>
-        
-<?php
+
     foreach ($resultado as $row){
         $sexo = $row['sexo'];
         $checkedM = ( $sexo == 'M')?('checked'):('');
@@ -59,7 +56,7 @@
                             <input value='<?php echo "$row[dataNascimento]"; ?>' type="date" name="dataNascimento" id="dataNascimento" class="form-control">
                         </div>
 
-                        <div class="radio col-sm-4">
+                        <div class="radio col-sm-3">
                             <label>Selecione o sexo do professor</label>
                             <label><input <?php echo "$checkedM"; ?> class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
                             <label><input <?php echo "$checkedF"; ?> class="optradio" name="sexo" type="radio" value="F">Feminino</label>
@@ -73,8 +70,6 @@
                     <input type='submit' name='botao' class="btn btn-primary" value='Alterar'>
                     <input type='submit' name='botao' class="btn btn-danger" value='Excluir'>
                 </form>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+<?php
+    include('rodape.php');
+?>
