@@ -16,7 +16,7 @@
 			echo $e->getMessage();
 		}
 		$inserir=$pdo->prepare("Insert into aluno(nome, endereco, turma, turno, dataNascimento) Values('$nome', '$endereco', '$turma', '$turno', '$dataNascimento');");
-		$inserir->execute();
+		$inserir->execute() or die ("Erro ao cadastrar aluno, campos não preenchidos corretamente");
 		$pdo = null;
 		echo "<p>Aluno adicionado com sucesso</p>";
 
@@ -29,7 +29,7 @@
 			echo $e->getMessage();
 		}
 		$inserir=$pdo->prepare("update aluno set nome='$nome', endereco='$endereco', turma='$turma', turno='$turno', dataNascimento='$dataNascimento' where matricula = $matricula;");
-		$inserir->execute();
+		$inserir->execute() or die ("Erro ao alterar dados de aluno, campos não preenchidos corretamente");
 		$pdo = null;
 		echo "<p>Dados de $nome alterados com sucesso</p>";
 

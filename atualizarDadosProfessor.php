@@ -20,7 +20,7 @@
 		$inserir=$pdo->prepare("Insert into professor(
 			nome, endereco, cpf, telefone, sexo, dataNascimento, formacao) 
 			Values('$nome', '$endereco', '$cpf', '$telefone', '$sexo', '$dataNascimento', '$formacao');");
-		$inserir->execute();
+		$inserir->execute() or die ("Erro ao cadastrar professor, campos não preenchidos corretamente");
 		$pdo = null;
 		echo "<p>Professor adicionado com sucesso</p>";
 
@@ -32,7 +32,7 @@
 			echo $e->getMessage();
 		}
 		$inserir=$pdo->prepare("update professor set nome='$nome', endereco='$endereco', cpf='$cpf', telefone='$telefone', sexo='$sexo', dataNascimento='$dataNascimento', formacao='$formacao' where idProfessor = '$idProfessor';");
-		$inserir->execute();
+		$inserir->execute() or die ("Erro ao alterar dados de professor, campos não preenchidos corretamente");
 		$pdo = null;
 		echo "<p>Dados de $nome alterados com sucesso</p>";
 

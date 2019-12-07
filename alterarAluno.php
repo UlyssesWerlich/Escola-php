@@ -30,21 +30,21 @@
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
-                                <input value='<?php echo "$row[nome]"; ?>' type="text" name="nome" id="nome" class="form-control">
+                                <input value='<?php echo "$row[nome]"; ?>' minlength="3" maxlength="45" type="text" name="nome" id="nome" class="form-control">
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='endereco'>Endereço</label>
-                            <input value='<?php echo "$row[endereco]"; ?>' type="text" name="endereco" id="endereco" class="form-control">
+                            <input value='<?php echo "$row[endereco]"; ?>' minlength="3" maxlength="80" type="text" name="endereco" id="endereco" class="form-control">
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='turma'>Turma</label>
-                                <input value='<?php echo "$row[turma]"; ?>' type="text" name="turma" id="turma" class="form-control">
+                                <input value='<?php echo "$row[turma]"; ?>' minlength="3" maxlength="20" type="text" name="turma" id="turma" class="form-control">
                         </div>
                     </div>
 

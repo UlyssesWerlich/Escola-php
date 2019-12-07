@@ -7,21 +7,21 @@
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
-                                <input type="text" name="nome" id="nome" class="form-control">
+                                <input type="text" minlength="3" maxlength="45" name="nome" id="nome" class="form-control">
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='endereco'>Endereço</label>
-                            <input type="text" name="endereco" id="endereco" class="form-control">
+                            <input type="text" minlength="3" maxlength="80" name="endereco" id="endereco" class="form-control">
                         </div>
                     </div>
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='turma'>Turma</label>
-                                <input type="text" name="turma" id="turma" class="form-control">
+                                <input minlength="3" maxlength="20" type="text" name="turma" id="turma" class="form-control">
                         </div>
                     </div>
 
@@ -33,7 +33,7 @@
                         
                         <div class="checkbox col-sm-3">
                             <label>Selecione o turno do aluno</label>
-                            <label><input class="optradio" name="turno" type="radio" value="M"/>Matutivo</label>
+                            <label><input checked class="optradio" name="turno" type="radio" value="M"/>Matutivo</label>
                             <label><input class='optradio' name='turno' type='radio' value='V'/>Vespertino</label>
                             <label><input class='optradio' name='turno' type='radio' value='N'>Noturno</label>
                         </div>
