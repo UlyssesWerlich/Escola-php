@@ -1,8 +1,8 @@
 <?php
     $titulo = "Cadastro de Aluno";
-    include('cabecalho.php');
+    include('../partials/cabecalho.php');
 ?>            
-                <form name="form" method="POST" action="atualizarDadosAluno.php">
+                <form name="form" method="POST" action="../controler/atualizarDadosAluno.php">
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
@@ -42,5 +42,5 @@
                 </form>
 
 <?php
-    include('rodape.php');
+    include('../partials/rodape.php');
 ?>

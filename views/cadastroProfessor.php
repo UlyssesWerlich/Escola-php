@@ -1,8 +1,8 @@
 <?php
     $titulo = "Cadastro de Professor";
-    include('cabecalho.php');
+    include('../partials/cabecalho.php');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="atualizarDadosProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarDadosProfessor.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
@@ -50,5 +50,5 @@
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
 <?php
-    include('rodape.php');
+    include('../partials/rodape.php');
 ?>

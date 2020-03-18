@@ -1,8 +1,8 @@
 <?php
     $titulo = "Consulta de Aluno";
-    include('cabecalho.php');
+    include('../partials/cabecalho.php');
 ?>
-                <form method='POST' action='consultaAluno.php'>
+                <form method='POST' action='../controler/consultaAluno.php'>
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='nomeConsulta'>Nome</label>
@@ -31,7 +31,7 @@
 
                     </table>
 <!----------------------------------AJAX--------------------------------------->                    
-                    <script src='consultaAjax/request.js'></script>
+                    <script src='../ajax/request.js'></script>
                     <script>
                         function getDados(){
 
@@ -44,7 +44,7 @@
                             var xmlreq = CriarRequest();
 
                             // Iniciar uma requisição
-                            xmlreq.open("GET", "consultaAjax/ajaxAluno.php?nomeConsulta=" + nome + "&turmaConsulta=" + turma +"&turnoConsulta=" + turno, true);
+                            xmlreq.open("GET", "../ajax/ajaxAluno.php?nomeConsulta=" + nome + "&turmaConsulta=" + turma +"&turnoConsulta=" + turno, true);
 
                             // Atribui uma função para ser executada sempre que houver uma mudança de ado
                             xmlreq.onreadystatechange = function(){
@@ -61,7 +61,7 @@
                     </script>
 
 <?php
-    include('rodape.php');
+    include('../partials/rodape.php');
 ?>
                 
                 

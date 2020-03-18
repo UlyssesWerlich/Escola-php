@@ -1,6 +1,6 @@
 <?php
 	$titulo = "Alterar dados de Professor";
-    include('cabecalho.php');
+    include('../partials/cabecalho.php');
 
 	$nome = $_POST['nome'];
 	$endereco = $_POST['endereco'];
@@ -52,8 +52,8 @@
 
 	//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ?>
-				<p><a href='consultaProfessor.php'>Consultar Professor</a></p>
+				<p><a href='../views/consultaProfessor.php'>Consultar Professor</a></p>
 
 <?php
-    include('rodape.php');
+    include('../partials/rodape.php');
 ?>

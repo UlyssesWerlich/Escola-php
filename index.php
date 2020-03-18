@@ -1,7 +1,5 @@
 <?php
-    $titulo = "Bem vindo";
-    include('cabecalho.php');
-    include('rodape.php');
+    header("Location: views/paginaInicial.php");
 ?>
 
 

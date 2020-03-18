@@ -1,6 +1,6 @@
 <?php
     $titulo = "Alterar dados de Aluno";
-    include('cabecalho.php');
+    include('../partials/cabecalho.php');
 
     try {
         $pdo =new PDO("mysql:host=localhost;dbname=escola","root", "password");
@@ -19,7 +19,7 @@
     $checkedN = ($row['turno'] == 'N')?('checked'):('');
 
 ?>
-                <form name="form" method="POST" action="atualizarDadosAluno.php">
+                <form name="form" method="POST" action="../controler/atualizarDadosAluno.php">
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='matricula'>Matrícula</label>
@@ -65,5 +65,5 @@
                     <input type="submit" class="btn btn-danger" name="botao" value="Excluir"/>
                 </form>
 <?php
-    include('rodape.php');
+    include('../partials/rodape.php');
 ?>
