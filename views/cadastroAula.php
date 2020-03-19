@@ -34,8 +34,8 @@
 
                     <div class='row'>
                         <div class="form-group col-sm-3">
-                            <label class="control-label" for='IdProfessor'>ID do Professor</label>
-                            <input  type="text" name="IdProfessor" id="IdProfessor" class="form-control">
+                            <label class="control-label" for='idProfessor'>ID do Professor</label>
+                            <input  type="text" name="idProfessor" id="idProfessor" class="form-control">
                         </div>
 
                         <div class="form-group col-sm-3">

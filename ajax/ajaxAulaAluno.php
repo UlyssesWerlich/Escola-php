@@ -1,9 +1,6 @@
-                <!-- <input type='text' id='matricula' name='matriculas[]' class='form-control'>
-                <input type='submit' class='btn btn-primary' name='adicionarAluno' value='Adicionar Aluno' />
-                <input type='text' id='nome' name='nomes[]' class='form-control'> -->
 <?php
 
-    if (isset($_GET['valorConsulta'])){
+    if (!empty($_GET['valorConsulta'])){
         try{
             $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
         }catch(PDOException $e){
@@ -11,7 +8,7 @@
         }
         $valorConsulta = $_GET['valorConsulta'];
 
-        $consultar=$pdo->prepare("SELECT * from aluno where (matricula like '$valorConsulta') OR ( nome LIKE '$valorConsulta%') limit 3;");
+        $consultar=$pdo->prepare("SELECT * from aluno where (matricula like '$valorConsulta') OR ( nome LIKE '$valorConsulta%') limit 1;");
         $consultar->execute();
     
         $result = $consultar->fetchAll();

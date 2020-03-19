@@ -1,32 +1,31 @@
 <?php
 
-    $materia = $_POST['materia'];
+    /*$materia = $_POST['materia'];
     $turno = $_POST['turno'];
     $cargaHoraria = $_POST['cargaHoraria'];
     $curso = $_POST['curso'];
-    $IdProfessor = $_POST['IdProfessor'];
+    $idProfessor = $_POST['idProfessor'];
     $nomeProfessor = $_POST['nomeProfessor'];
     $dataInicio = $_POST['dataInicio'];
     $dataTermino = $_POST['dataTermino'];
     $diaSemana = $_POST['diaSemana'];
     $horaInicio = $_POST['horaInicio'];
-    $horaTermino = $_POST['horaTermino'];
+    $horaTermino = $_POST['horaTermino'];*/
     
 
     $titulo = "Cadastro de Aula - Inserir Alunos";
     include('../partials/cabecalho.php');
 ?>
+                <br/>
                 <h5>Consulta de Aluno</h5>
                 <form>
                     <table class='table'>
                         <tr>
-                            <td><input type='text' size='1' placeholder='Digite aqui a matrícula ou nome para consulta' onkeyup='getDados()' class="form-control" id='valorConsulta' name='valorConsulta' /></td>
+                            <td><input type='text' size='1' placeholder='Consulta por nome ou matrícula' onkeyup='getDados()' class="form-control" id='valorConsulta' name='valorConsulta' /></td>
                             <td>Matrícula</td>
                             <td>Nome</td>
                         </tr>
-                        <tbody id='result'>
-                            <tr><td>-</td><td> </td><td> </td></tr>
-                            <tr><td>-</td><td> </td><td> </td></tr>
+                        <tbody id='resultado'>
                             <tr><td>-</td><td> </td><td> </td></tr>
                         </tbody>
                     </table>
@@ -35,18 +34,6 @@
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
                 <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarTurma.php">
-                    <input type='hidden' name='materia' value='<?php echo $materia ?>'/>
-                    <input type='hidden' name='turno' value='<?php echo $turno ?>'/>
-                    <input type='hidden' name='cargaHoraria' value='<?php echo $cargaHoraria ?>'/>
-                    <input type='hidden' name='curso' value='<?php echo $curso ?>'/>
-                    <input type='hidden' name='IdProfessor' value='$<?php echo $IdProfessor ?>'/>
-                    <input type='hidden' name='nomeProfessor' value='$<?php echo $nomeProfessor ?>'/>
-                    <input type='hidden' name='dataInicio' value='$<?php echo $dataInicio ?>'/>
-                    <input type='hidden' name='dataTermino' value='$<?php echo $dataTermino ?>'/>
-                    <input type='hidden' name='diaSemana' value='$<?php echo $diaSemana ?>'/>
-                    <input type='hidden' name='horaInicio' value='<?php echo $horaInicio ?>'/>
-                    <input type='hidden' name='horaFim' value='<?php echo $horaFim ?>'/>
-
                     <table class='table' id='listaAlunos'>
                         <tr>
                             <td><input type="submit" class="btn btn-success" name="botao" value="Cadastrar Turma"/></td>
@@ -56,14 +43,15 @@
                     </table>
                 </form>
 
-    <!----------------------------------AJAX--------------------------------------->                    
+    <!----------------------------------AJAX + FUNÇÕES JAVASCRIPT--------------------------------------->                    
                 <script src='../ajax/request.js'></script>
                 <script>
                     function getDados(){
                         // Declaração de Variáveis
+
                         var valor = document.getElementById("valorConsulta") ? document.getElementById("valorConsulta").value : "%";
 
-                        var result = document.getElementById("result");
+                        var resultado = document.getElementById("resultado");
                         var xmlreq = CriarRequest();
                         // Iniciar uma requisição
                         xmlreq.open("GET", "../ajax/ajaxAulaAluno.php?valorConsulta=" + valor, true);
@@ -73,23 +61,26 @@
 
                             // Verifica se o arquivo foi encontrado com sucesso
                             if (xmlreq.status == 200){
-                                result.innerHTML = xmlreq.responseText;
+                                resultado.innerHTML = xmlreq.responseText;
                             } else {
-                                result.innerHTML = "Erro: " + xmlreq.statusText;
+                                resultado.innerHTML = "Erro: " + xmlreq.statusText;
                             }
                         };
                         xmlreq.send(null);
                     }
 
                     function adicionarAluno(matricula, aluno){
-                        var linha = "<tr><td></td><td>" + matricula + "</td><td>" + aluno + "</td>"
-                        + "<input type='hidden' name='matriculas[]' value='" + matricula + "'/></tr>";
-                        var listaAlunos = document.getElementById("listaAlunos");
-                        listaAlunos.innerHTML += linha;
+                        var linha = document.createElement('tr');
+                        linha.insertCell(0).innerHTML = "<button class='btn btn-danger' onclick='removerLinha(this)'>Remover</button>";
+                        linha.insertCell(1).innerHTML = matricula;
+                        linha.insertCell(2).innerHTML = aluno + "<input type='hidden' name='matriculas[]' value='" + matricula + "'/>";
+                        document.getElementById('listaAlunos').appendChild(linha);
+                        return false;
                     }
 
-                    function removerlinha(){
-                        
+                    function removerLinha(linha){
+                        var i=linha.parentNode.parentNode.rowIndex;
+                        document.getElementById('listaAlunos').deleteRow(i);
                     }
                 </script>
 <?php

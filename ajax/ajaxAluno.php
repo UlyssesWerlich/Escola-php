@@ -20,7 +20,10 @@
         $turmaConsulta = $_GET['turmaConsulta'];
         $turnoConsulta = $_GET['turnoConsulta'];
 
-        $consultar=$pdo->prepare("SELECT * from aluno where nome like '$nomeConsulta%' AND turma LIKE '$turmaConsulta%' AND turno LIKE '$turnoConsulta' ;");
+        $consultar=$pdo->prepare("SELECT * from aluno 
+                                        where nome like '$nomeConsulta%' 
+                                            AND turma LIKE '$turmaConsulta%' 
+                                            AND turno LIKE '$turnoConsulta' ;");
         $consultar->execute();
     
         $result = $consultar->fetchAll();
