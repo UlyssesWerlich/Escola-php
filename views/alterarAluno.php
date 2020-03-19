@@ -19,7 +19,7 @@
     $checkedN = ($row['turno'] == 'N')?('checked'):('');
 
 ?>
-                <form name="form" method="POST" action="../controler/atualizarDadosAluno.php">
+                <form name="form" method="POST" action="../controler/atualizarAluno.php">
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='matricula'>Matrícula</label>

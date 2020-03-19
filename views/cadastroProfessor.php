@@ -2,24 +2,23 @@
     $titulo = "Cadastro de Professor";
     include('../partials/cabecalho.php');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarDadosProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarProfessor.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
-                                <input type="text" minlength="3" maxlength="45" name="nome" id="nome" class="form-control">
+                            <input type="text" minlength="3" maxlength="45" name="nome" id="nome" class="form-control">
                         </div>
                     </div>
                 
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='cpf'>CPF</label>
-                                <input minlength="14" maxlength="14" placeholder='000.000.000-00' type="text" name="cpf" id="cpf" class="form-control">
-
+                            <input minlength="14" maxlength="14" placeholder='000.000.000-00' type="text" name="cpf" id="cpf" class="form-control">
                         </div>
 
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='telefone'>Telefone</label>
-                                <input type="text" minlength="3" maxlength="13" name="telefone" id="telefone" class="form-control">
+                            <input type="text" minlength="3" maxlength="13" name="telefone" id="telefone" class="form-control">
                         </div>
                     </div>
 

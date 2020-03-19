@@ -25,27 +25,31 @@
                             <td>Nome</td>
                         </tr>
                         <tbody id='result'>
-                            <tr><td></td></tr>
-                            <tr><td></td></tr>
-                            <tr><td></td></tr>
+                            <tr><td>-</td><td> </td><td> </td></tr>
+                            <tr><td>-</td><td> </td><td> </td></tr>
+                            <tr><td>-</td><td> </td><td> </td></tr>
                         </tbody>
                     </table>
                 </form>
+                <br/>
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarAula.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarTurma.php">
                     <input type='hidden' name='materia' value='<?php echo $materia ?>'/>
                     <input type='hidden' name='turno' value='<?php echo $turno ?>'/>
+                    <input type='hidden' name='cargaHoraria' value='<?php echo $cargaHoraria ?>'/>
                     <input type='hidden' name='curso' value='<?php echo $curso ?>'/>
                     <input type='hidden' name='IdProfessor' value='$<?php echo $IdProfessor ?>'/>
                     <input type='hidden' name='nomeProfessor' value='$<?php echo $nomeProfessor ?>'/>
                     <input type='hidden' name='dataInicio' value='$<?php echo $dataInicio ?>'/>
                     <input type='hidden' name='dataTermino' value='$<?php echo $dataTermino ?>'/>
                     <input type='hidden' name='diaSemana' value='$<?php echo $diaSemana ?>'/>
+                    <input type='hidden' name='horaInicio' value='<?php echo $horaInicio ?>'/>
+                    <input type='hidden' name='horaFim' value='<?php echo $horaFim ?>'/>
 
                     <table class='table' id='listaAlunos'>
                         <tr>
-                            <td><input type="submit" class="btn btn-success" name="botao" value="Cadastrar Aula"/></td>
+                            <td><input type="submit" class="btn btn-success" name="botao" value="Cadastrar Turma"/></td>
                             <td>Matrícula</td>
                             <td>Nome</td>
                         </tr>
@@ -78,8 +82,8 @@
                     }
 
                     function adicionarAluno(matricula, aluno){
-                        alert("cheguei");
-                        var linha = "<tr><td></td><td>" + matricula + "</td><td>" + aluno + "</td></tr>";
+                        var linha = "<tr><td></td><td>" + matricula + "</td><td>" + aluno + "</td>"
+                        + "<input type='hidden' name='matriculas[]' value='" + matricula + "'/></tr>";
                         var listaAlunos = document.getElementById("listaAlunos");
                         listaAlunos.innerHTML += linha;
                     }

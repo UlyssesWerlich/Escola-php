@@ -18,7 +18,7 @@
         $checkedM = ( $sexo == 'M')?('checked'):('');
         $checkedF = ( $sexo == 'F')?('checked'):('');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarDadosProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarProfessor.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>

@@ -2,7 +2,7 @@
     $titulo = "Cadastro de Aula";
     include('../partials/cabecalho.php');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../views/cadastroAulaAluno.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarAula.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='materia'>Matéria</label>
@@ -28,7 +28,7 @@
 
                         <div class="form-group col-sm-2">
                             <label class="control-label" for='cargaHoraria'>Carga horária</label>
-                            <input type="text" minlength="3" maxlength="30" name="cargaHoraria" id="cargaHoraria" class="form-control">
+                            <input type="text" name="cargaHoraria" id="cargaHoraria" class="form-control">
                         </div>
                     </div>
 
