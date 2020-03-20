@@ -48,25 +48,27 @@
                 <script>
                     function getDados(){
                         // Declaração de Variáveis
+                        var valor = document.getElementById("valorConsulta").value;
+                        if (valor.length > 2) {
+                            var resultado = document.getElementById("resultado");
+                            var xmlreq = CriarRequest();
+                            // Iniciar uma requisição
+                            xmlreq.open("GET", "../ajax/ajaxAulaAluno.php?valorConsulta=" + valor, true);
 
-                        var valor = document.getElementById("valorConsulta") ? document.getElementById("valorConsulta").value : "%";
+                            // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                            xmlreq.onreadystatechange = function(){
 
-                        var resultado = document.getElementById("resultado");
-                        var xmlreq = CriarRequest();
-                        // Iniciar uma requisição
-                        xmlreq.open("GET", "../ajax/ajaxAulaAluno.php?valorConsulta=" + valor, true);
-
-                        // Atribui uma função para ser executada sempre que houver uma mudança de ado
-                        xmlreq.onreadystatechange = function(){
-
-                            // Verifica se o arquivo foi encontrado com sucesso
-                            if (xmlreq.status == 200){
-                                resultado.innerHTML = xmlreq.responseText;
-                            } else {
-                                resultado.innerHTML = "Erro: " + xmlreq.statusText;
-                            }
-                        };
-                        xmlreq.send(null);
+                                // Verifica se o arquivo foi encontrado com sucesso
+                                if (xmlreq.status == 200){
+                                    resultado.innerHTML = xmlreq.responseText;
+                                } else {
+                                    resultado.innerHTML = "Erro: " + xmlreq.statusText;
+                                }
+                            };
+                            xmlreq.send(null);
+                        } else {
+                            document.getElementById("resultado").innerHTML = '';
+                        }
                     }
 
                     function adicionarAluno(matricula, aluno){

@@ -34,29 +34,32 @@
                     <script src='../ajax/request.js'></script>
                     <script>
                         function getDados(){
-
-                            // Declaração de Variáveis
-                            var nome = document.getElementById("nomeConsulta") ? document.getElementById("nomeConsulta").value : "%";
-                            var turma = document.getElementById("turmaConsulta") ? document.getElementById("turmaConsulta").value : "%";
+                            var nome = document.getElementById("nomeConsulta").value;
+                            var turma = document.getElementById("turmaConsulta").value;
                             var turno = document.getElementById("turnoConsulta").value;
 
-                            var result = document.getElementById("resultado");
-                            var xmlreq = CriarRequest();
+                            if (nome.length > 2 || turma.length > 2 || turno != "%") {
 
-                            // Iniciar uma requisição
-                            xmlreq.open("GET", "../ajax/ajaxAluno.php?nomeConsulta=" + nome + "&turmaConsulta=" + turma +"&turnoConsulta=" + turno, true);
+                                var result = document.getElementById("resultado");
+                                var xmlreq = CriarRequest();
 
-                            // Atribui uma função para ser executada sempre que houver uma mudança de ado
-                            xmlreq.onreadystatechange = function(){
+                                // Iniciar uma requisição
+                                xmlreq.open("GET", "../ajax/ajaxAluno.php?nomeConsulta=" + nome + "&turmaConsulta=" + turma +"&turnoConsulta=" + turno, true);
 
-                                // Verifica se o arquivo foi encontrado com sucesso
-                                if (xmlreq.status == 200){
-                                    result.innerHTML = xmlreq.responseText;
-                                } else {
-                                    result.innerHTML = "Erro: " + xmlreq.statusText;
-                                }
-                            };
-                            xmlreq.send(null);
+                                // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                                xmlreq.onreadystatechange = function(){
+
+                                    // Verifica se o arquivo foi encontrado com sucesso
+                                    if (xmlreq.status == 200){
+                                        result.innerHTML = xmlreq.responseText;
+                                    } else {
+                                        result.innerHTML = "Erro: " + xmlreq.statusText;
+                                    }
+                                };
+                                xmlreq.send(null);
+                            } else {
+                                document.getElementById("resultado").innerHTML = '';
+                            }
                         }
                     </script>
 

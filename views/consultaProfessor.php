@@ -21,27 +21,29 @@
                         function getDados(){
 
                             // Declaração de Variáveis
-                            var nome = document.getElementById("nomeConsulta") ? document.getElementById("nomeConsulta").value : "%";
-                            //var turma = document.getElementById("turmaConsulta") ? document.getElementById("turmaConsulta").value : "%";
-                            //var turno = document.getElementById("turnoConsulta").value;
+                            var nome = document.getElementById("nomeConsulta").value;
+                            if (nome.length > 2) {
 
-                            var result = document.getElementById("resultado");
-                            var xmlreq = CriarRequest();
+                                var result = document.getElementById("resultado");
+                                var xmlreq = CriarRequest();
 
-                            // Iniciar uma requisição
-                            xmlreq.open("GET", "../ajax/ajaxProfessor.php?nomeConsulta=" + nome /*+ "&turmaConsulta=" + turma +"&turnoConsulta=" + turno*/, true);
+                                // Iniciar uma requisição
+                                xmlreq.open("GET", "../ajax/ajaxProfessor.php?nomeConsulta=" + nome /*+ "&turmaConsulta=" + turma +"&turnoConsulta=" + turno*/, true);
 
-                            // Atribui uma função para ser executada sempre que houver uma mudança de ado
-                            xmlreq.onreadystatechange = function(){
+                                // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                                xmlreq.onreadystatechange = function(){
 
-                                // Verifica se o arquivo foi encontrado com sucesso
-                                if (xmlreq.status == 200){
-                                    result.innerHTML = xmlreq.responseText;
-                                } else {
-                                    result.innerHTML = "Erro: " + xmlreq.statusText;
-                                }
-                            };
-                            xmlreq.send(null);
+                                    // Verifica se o arquivo foi encontrado com sucesso
+                                    if (xmlreq.status == 200){
+                                        result.innerHTML = xmlreq.responseText;
+                                    } else {
+                                        result.innerHTML = "Erro: " + xmlreq.statusText;
+                                    }
+                                };
+                                xmlreq.send(null);
+                            } else {
+                                document.getElementById("resultado").innerHTML = '';
+                            }
                         }
                     </script>
 

@@ -6,7 +6,7 @@
                     <div class='row'>
                         <div class="form-group col-sm-3">
                             <label class="control-label" for='materiaConsulta'>Matéria</label>
-                            <input type='text' onkeyup='getDados()' class="form-control" size='40' id='materiaConsulta' name='materiaConsulta' placeholder='Escreva aqui o nome para consulta' />
+                            <input type='text' onkeyup='getDados()' class="form-control" size='40' id='materiaConsulta' name='materiaConsulta' />
                         </div>
 
                         <div class='form-group col-sm-2'>
@@ -53,34 +53,38 @@
                         function getDados(){
 
                             // Declaração de Variáveis
-                            var materia = document.getElementById("materiaConsulta") ? document.getElementById("materiaConsulta").value : "%";
-                            var curso = document.getElementById("cursoConsulta") ? document.getElementById("cursoConsulta").value : "%";
-                            var professor = document.getElementById("professorConsulta") ? document.getElementById("professorConsulta").value : "%";
+                            var materia = document.getElementById("materiaConsulta").value
+                            var curso = document.getElementById("cursoConsulta").value;
+                            var professor = document.getElementById("professorConsulta").value;
                             var diaSemana = document.getElementById("diaSemanaConsulta").value;
                             var turno = document.getElementById("turnoConsulta").value;
 
-                            var result = document.getElementById("resultado");
-                            var xmlreq = CriarRequest();
+                            if (materia.length > 2 || curso.length > 2 || professor.length > 2 || diaSemana != "%" || turno != "%") {
 
-                            // Iniciar uma requisição
-                            xmlreq.open("GET", "../ajax/ajaxAula.php?" + 
-                                                "materiaConsulta=" + materia + 
-                                                "&cursoConsulta=" + curso + 
-                                                "&professorConsulta=" + professor +
-                                                "&diaSemana=" + diaSemana +
-                                                "&turno=" + turno, true);
+                                var result = document.getElementById("resultado");
+                                var xmlreq = CriarRequest();
 
-                            // Atribui uma função para ser executada sempre que houver uma mudança de ado
-                            xmlreq.onreadystatechange = function(){
+                                // Iniciar uma requisição
+                                xmlreq.open("GET", "../ajax/ajaxAula.php?" + 
+                                                    "materiaConsulta=" + materia + 
+                                                    "&cursoConsulta=" + curso + 
+                                                    "&professorConsulta=" + professor +
+                                                    "&diaSemana=" + diaSemana +
+                                                    "&turno=" + turno, true);
 
-                                // Verifica se o arquivo foi encontrado com sucesso
-                                if (xmlreq.status == 200){
-                                    result.innerHTML = xmlreq.responseText;
-                                } else {
-                                    result.innerHTML = "Erro: " + xmlreq.statusText;
-                                }
-                            };
-                            xmlreq.send(null);
+                                // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                                xmlreq.onreadystatechange = function(){
+                                    // Verifica se o arquivo foi encontrado com sucesso
+                                    if (xmlreq.status == 200){
+                                        result.innerHTML = xmlreq.responseText;
+                                    } else {
+                                        result.innerHTML = "Erro: " + xmlreq.statusText;
+                                    }
+                                };
+                                xmlreq.send(null);
+                            } else {
+                                document.getElementById("resultado").innerHTML = '';
+                            }
                         }
                     </script>
 
