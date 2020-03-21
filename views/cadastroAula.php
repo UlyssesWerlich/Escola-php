@@ -40,12 +40,12 @@
 
                         <div class="form-group col-sm-3">
                             <label class="control-label" for='nomeProfessor'>Nome do Professor</label>
-                            <input type="text" minlength="3" maxlength="80" name="nomeProfessor" id="nomeProfessor" class="form-control">
+                            <input type="text"  minlength="3" maxlength="80" name="nomeProfessor" id="nomeProfessor" class="form-control">
                         </div>
 
-                        <div class="form-group col-sm-1">
-                            <label class="control-label" for='consultarProfessor'>Nome</label>
-                            <button class="btn btn-primary" id='consultarProfessor'>Consultar</button>
+                        <div class="form-group col-sm-3">
+                            <br/>
+                            <p><a href="javascript:getDados()">Consultar Professor</a></p>
                         </div>
                     </div>
 
@@ -85,6 +85,37 @@
                     
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
+
+<!----------------------------------AJAX--------------------------------------->                    
+                <script src='../ajax/request.js'></script>
+                <script>
+                    function getDados(){
+                        var id = document.getElementById("idProfessor").value;
+                        var nome = document.getElementById("nomeProfessor").value;
+                    
+                        if (nome.length > 2 || id.length > 0) {
+
+                            var result = document.getElementById("resultado");
+                            var xmlreq = CriarRequest();
+                            xmlreq.open("GET", "../ajax/ajaxNomeProfessor.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
+
+                            xmlreq.onreadystatechange = function(){
+                                if (xmlreq.status == 200){
+                                    var resposta = xmlreq.responseText;
+                                    var array = resposta.split('<td>');
+                                    document.getElementById("idProfessor").value = array[0];
+                                    document.getElementById("nomeProfessor").value = array[1];
+                                } else {
+                                    result.innerHTML = "Erro: " + xmlreq.statusText;
+                                }
+                            };
+                            xmlreq.send(null);
+                        } else {
+                            document.getElementById("idProfessor").innerHTML = '';
+                            document.getElementById("nomeProfessor").innerHTML = '';
+                        }
+                    }
+                </script>
 <?php
     include('../partials/rodape.php');
 ?>

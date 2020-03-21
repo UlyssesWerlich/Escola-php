@@ -1,5 +1,5 @@
 <?php
-    $titulo = "Consulta de Aluno";
+    $titulo = "Consulta de Aula";
     include('../partials/cabecalho.php');
 ?>
                 <form method='POST'>

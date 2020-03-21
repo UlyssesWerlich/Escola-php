@@ -1,20 +1,12 @@
 <?php
-
-    /*$materia = $_POST['materia'];
-    $turno = $_POST['turno'];
-    $cargaHoraria = $_POST['cargaHoraria'];
-    $curso = $_POST['curso'];
-    $idProfessor = $_POST['idProfessor'];
-    $nomeProfessor = $_POST['nomeProfessor'];
-    $dataInicio = $_POST['dataInicio'];
-    $dataTermino = $_POST['dataTermino'];
-    $diaSemana = $_POST['diaSemana'];
-    $horaInicio = $_POST['horaInicio'];
-    $horaTermino = $_POST['horaTermino'];*/
-    
-
-    $titulo = "Cadastro de Aula - Inserir Alunos";
+    $titulo = "Atualizar Turma";
     include('../partials/cabecalho.php');
+
+    if ((isset($_GET['idAula'])) and (isset($_GET['materia'])) and (isset($_GET['curso']))){
+
+        $idAula = $_GET['idAula'];
+        $materia = $_GET['materia'];
+        $curso = $_GET['curso'];
 ?>
                 <br/>
                 <h5>Consulta de Aluno</h5>
@@ -34,12 +26,36 @@
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
                 <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarTurma.php">
+                    <input type='hidden' name='idAula' value='<?php echo $idAula ?>'/>
                     <table class='table' id='listaAlunos'>
                         <tr>
                             <td><input type="submit" class="btn btn-success" name="botao" value="Cadastrar Turma"/></td>
                             <td>Matrícula</td>
                             <td>Nome</td>
                         </tr>
+<?php
+            try {
+                $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
+            } catch (PDOException $e){
+                echo $e->getMessage();
+            }
+            $consulta = $pdo->prepare("SELECT t.matricula as matricula, a.nome as nome from turma t join aluno a on t.matricula = a.matricula 
+                                            where idAula = '$idAula'");
+            $consulta->execute();
+            $alunos = $consulta->fetchAll();
+            foreach ($alunos as $aluno){ ?>
+
+                <tr>
+                    <td><button class='btn btn-danger' onclick='removerLinha(this)'>Remover</button></td>
+                    <td><?php echo $aluno['matricula'] ?><input type='hidden' name='matriculas[]' value='<?php echo $aluno['matricula'] ?>'/></td>
+                    <td><?php echo $aluno['nome'] ?></td>
+                </tr>
+            <?php
+            
+            }
+            $pdo=null;
+
+?>
                     </table>
                 </form>
 
@@ -74,8 +90,8 @@
                     function adicionarAluno(matricula, aluno){
                         var linha = document.createElement('tr');
                         linha.insertCell(0).innerHTML = "<button class='btn btn-danger' onclick='removerLinha(this)'>Remover</button>";
-                        linha.insertCell(1).innerHTML = matricula;
-                        linha.insertCell(2).innerHTML = aluno + "<input type='hidden' name='matriculas[]' value='" + matricula + "'/>";
+                        linha.insertCell(1).innerHTML = matricula + "<input type='hidden' name='matriculas[]' value='" + matricula + "'/>";
+                        linha.insertCell(2).innerHTML = aluno;
                         document.getElementById('listaAlunos').appendChild(linha);
                         return false;
                     }
@@ -86,5 +102,10 @@
                     }
                 </script>
 <?php
+    } else {
+?>
+        <h5>Erro ao cadastrar turma, favor retornar a página</h5>
+<?php
+    }
     include('../partials/rodape.php');
 ?>

@@ -43,7 +43,7 @@
                 <td><?php echo $row['professor'] ?></td>
                 <td><?php echo $row['horaInicio'] ?></td>
                 <td><?php echo $row['horaTermino'] ?></td>
-                <td><a href='cadastroTurma.php?idAula=<?php echo $row['idAula'] ?>'>Lista de alunos</a></td>
+                <td><a href='cadastroTurma.php?idAula=<?php echo $row['idAula'] ?>&materia=<?php echo $row['materia'] ?>&curso=<?php echo $row['curso'] ?>'>Lista de alunos</a></td>
             </tr>
 
             <?php
