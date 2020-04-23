@@ -1,8 +1,16 @@
-<?php
-    $titulo = "Consulta de Aluno";
-    include('../partials/cabecalho.php');
-?>
-                <form method='POST' action='../controler/consultaAluno.php'>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
+
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Consulta de Aluno</h3>
+
+                <form method='POST' action='../controllers/consultaAluno.php'>
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='nomeConsulta'>Nome</label>

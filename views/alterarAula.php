@@ -1,12 +1,17 @@
-<?php
-    $titulo = "Alterar informações de Aula";
-    include('../partials/cabecalho.php');
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
 
-    try {
-        $pdo =new PDO("mysql:host=localhost;dbname=escola","root", "password");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Alterar informações da Aula</h3>
+
+<?php
+    require_once '../database/connection.php';
 
     $idAula = $_GET['idAula'];
     $consulta = $pdo->prepare("select * from aula where idAula like '$idAula'");
@@ -14,9 +19,8 @@
     $resultado = $consulta->fetchAll();
 
     foreach ($resultado as $row){
-
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarAula.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarAula.php">
                     <input type='hidden' name='idAula' value='<?php echo $row['idAula'] ?>'/>
 
                     <div class='row'>

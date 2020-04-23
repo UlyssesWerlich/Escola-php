@@ -1,7 +1,15 @@
-<?php
-    $titulo = "Consulta de Aula";
-    include('../partials/cabecalho.php');
-?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
+
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Consulta de Aula</h3>
+
                 <form method='POST'>
                     <div class='row'>
                         <div class="form-group col-sm-3">

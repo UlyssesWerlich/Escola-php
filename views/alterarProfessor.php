@@ -1,12 +1,18 @@
-<?php
-    $titulo = 'Alterar dados de Professor';
-    include('../partials/cabecalho.php');
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
 
-    try {
-        $pdo =new PDO("mysql:host=localhost;dbname=escola","root", "password");
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Alterar informações do Professor</h3>
+
+<?php
+
+    require_once '../database/connection.php';
 
     $idProfessor = $_GET['idProfessor'];
     $consulta = $pdo->prepare("select * from professor where idProfessor like '$idProfessor'");
@@ -18,7 +24,7 @@
         $checkedM = ( $sexo == 'M')?('checked'):('');
         $checkedF = ( $sexo == 'F')?('checked'):('');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarProfessor.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>

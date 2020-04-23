@@ -1,4 +1,6 @@
 <?php
+	require_once '../database/connection.php';
+
 	$titulo = "Alterar dados de Professor";
     include('../partials/cabecalho.php');
 
@@ -10,12 +12,6 @@
 	$dataNascimento = $_POST['dataNascimento'];
 	$formacao = $_POST['formacao'];
 	$botao = $_POST['botao'];
-
-	try{
-		$pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-	}catch(PDOException $e){
-		echo $e->getMessage();
-	}
 
 	switch ($botao) {
 		case 'Cadastrar':

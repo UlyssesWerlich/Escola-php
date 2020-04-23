@@ -1,4 +1,6 @@
 <?php
+	require_once '../database/connection.php';
+
 	$titulo = 'Aula';
     include('../partials/cabecalho.php');
 
@@ -15,12 +17,6 @@
     $horaTermino = $_POST['horaTermino'];
     
     $botao = $_POST['botao'];
-  
-	try{
-		$pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-	}catch(PDOException $e){
-		echo $e->getMessage();
-	}
 
 	switch ($botao) {
 		case 'Cadastrar':

@@ -1,4 +1,6 @@
 <?php
+	require_once '../database/connection.php';
+
 	$titulo = 'Alterar dados de Aluno';
     include('../partials/cabecalho.php');
 
@@ -7,12 +9,6 @@
 	$turma = $_POST['turma'];
 	$dataNascimento = $_POST['dataNascimento'];
 	$botao = $_POST['botao'];
-
-	try{
-		$pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-	}catch(PDOException $e){
-		echo $e->getMessage();
-	}
 
 	switch ($botao) {
 		case 'Cadastrar':
@@ -40,7 +36,7 @@
 			echo "<p>Aluno excluído com sucesso</p>";
 			break;
 	}
-	//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
 ?>
 				<p><a href='../views/consultaAluno.php'>Consultar Aluno</a></p>
 

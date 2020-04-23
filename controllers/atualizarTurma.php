@@ -1,16 +1,12 @@
 <?php
+    require_once '../database/connection.php';
+
 	$titulo = 'Atualização de Turma';
     include('../partials/cabecalho.php');
 
     if ((isset($_POST['idAula'])) and (isset($_POST['matriculas']))){
         $idAula = $_POST['idAula'];
         $matriculas = $_POST['matriculas'];
-
-        try {
-            $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-        } catch (PDOException $e){
-            echo $e->getMessage();
-        }
 
         $excluir = $pdo->prepare("DELETE from turma where idAula = '$idAula'");
         $excluir->execute() or die ("Erro ao deletar lista antiga");

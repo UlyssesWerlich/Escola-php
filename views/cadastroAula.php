@@ -1,8 +1,16 @@
-<?php
-    $titulo = "Cadastro de Aula";
-    include('../partials/cabecalho.php');
-?>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarAula.php">
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
+
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Cadastro de Aula</h3>
+                
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarAula.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='materia'>Matéria</label>

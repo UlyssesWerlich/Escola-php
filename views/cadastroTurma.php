@@ -1,7 +1,16 @@
-<?php
-    $titulo = "Atualizar Turma";
-    include('../partials/cabecalho.php');
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php include('../partials/header.php') ?>
+    </head>
+    <body>
+        <div class='d-flex'>
+        <?php include('../partials/menu.php') ?>
 
+           <div class='container-fluid'>
+                <h3 class='mt-3'>Atualizar Turma</h3>
+
+<?php
     if ((isset($_GET['idAula'])) and (isset($_GET['materia'])) and (isset($_GET['curso']))){
 
         $idAula = $_GET['idAula'];
@@ -25,7 +34,7 @@
                 <br/>
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
-                <form class="form-horizontal" name="form" method="POST" action="../controler/atualizarTurma.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarTurma.php">
                     <input type='hidden' name='idAula' value='<?php echo $idAula ?>'/>
                     <table class='table' id='listaAlunos'>
                         <tr>
