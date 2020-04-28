@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../partials/header.php') ?>
+        <?php include('../includes/header.php') ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../partials/menu.php') ?>
+        <?php include('../includes/menu.php') ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Alterar informações da Aula</h3>
 
 <?php
-    require_once '../database/connection.php';
-
+    require_once '../dao/aula.dao.php';
     $idAula = $_GET['idAula'];
-    $consulta = $pdo->prepare("select * from aula where idAula like '$idAula'");
-    $consulta->execute();
-    $resultado = $consulta->fetchAll();
-
+    $resultado = find($idAula);
     foreach ($resultado as $row){
 ?>
                 <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarAula.php">
@@ -149,5 +145,5 @@
 
 <?php
     }
-    include('../partials/rodape.php');
+    include('../includes/rodape.php');
 ?>

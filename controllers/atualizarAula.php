@@ -1,8 +1,5 @@
 <?php
-	require_once '../database/connection.php';
-
-	$titulo = 'Aula';
-    include('../partials/cabecalho.php');
+	require_once '../dao/aula.dao.php';
 
 	$materia = $_POST['materia'];
 	$turno = $_POST['turno'];
@@ -20,43 +17,18 @@
 
 	switch ($botao) {
 		case 'Cadastrar':
-			$inserir=$pdo->prepare(
-                "INSERT into aula(materia, turno, cargaHoraria, curso, idProfessor, dataInicio, 
-                                dataTermino, diaSemana, horaInicio, horaTermino) 
-                        VALUES('$materia', '$turno', '$cargaHoraria', '$curso', '$idProfessor', '$dataInicio', 
-								'$dataTermino', '$diaSemana', '$horaInicio', '$horaTermino');");
-
-			$inserir->execute() or die ("Erro ao cadastrar aula, campos não preenchidos corretamente");
-			$pdo = null;
-			echo "<p>Aula adicionado com sucesso</p>";
+			$message = create($materia, $turno, $cargaHoraria, $curso, $idProfessor, $dataInicio, $dataTermino, $diaSemana, $horaInicio, $horaTermino);
 			break;
 
 		case 'Alterar':
 			$idAula = $_POST['idAula'];
-			$alterar=$pdo->prepare(
-                "UPDATE aula set materia='$materia', turno='$turno', cargaHoraria='$cargaHoraria', 
-                                curso='$curso', idProfessor='$idProfessor', dataInicio='$dataInicio',
-                                dataTermino='$dataTermino', diaSemana='$diaSemana', horaInicio='$horaInicio', 
-                                horaTermino='$horaTermino'
-                            where idAula = '$idAula';");
-
-			$alterar->execute() or die ("Erro ao alterar informações de aula, campos não preenchidos corretamente");
-			$pdo = null;
-			echo "<p>Dados da aula alterados com sucesso</p>";
+			$message = edit($idAula, $materia, $turno, $cargaHoraria, $curso, $idProfessor, $dataInicio, $dataTermino, $diaSemana, $horaInicio, $horaTermino);
 			break;
 
 		case 'Excluir':
 			$idAula = $_POST['idAula'];
-			$excluir = $pdo->prepare("DELETE from aula where idAula = '$idAula'");
-			$excluir->execute();
-			$pdo = null;
-			echo "<p>Aula excluída com sucesso</p>";
+			$message = remove($idAula);
 			break;
 	}
-	//ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-?>
-				<p><a href='../views/consultaAula.php'>Consultar Aula</a></p>
-
-<?php
-    include('../partials/rodape.php');
+	header('Location: ../views/consultaAula.php?message='.$message);
 ?>

@@ -1,26 +1,8 @@
-                        <tr>
-                            <td>Matrícula</td>
-                            <td>Nome</td>
-                            <td>Endereço</td>
-                            <td>Telefone</td>
-                            <td>Sexo</td>
-                            <td>Data de Nascimento</td>
-                        </tr>
-
-
 <?php
     if (isset($_GET['nomeConsulta'])){
-        try{
-            $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
+        require_once '../dao/professor.dao.php';
         $nomeConsulta = $_GET['nomeConsulta'];
-        $consultar=$pdo->prepare("SELECT idProfessor, nome, endereco, telefone, sexo, dataNascimento from professor where nome like '$nomeConsulta%';");
-        $consultar->execute();
-    
-        $result = $consultar->fetchAll();
-
+        $result = toList($nomeConsulta);
         foreach ($result as $row) {
             $dataArray = explode("-", $row['dataNascimento']);
             $dataConvertida = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];

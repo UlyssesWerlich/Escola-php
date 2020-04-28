@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../partials/header.php') ?>
+        <?php include('../includes/header.php') ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../partials/menu.php') ?>
+        <?php include('../includes/menu.php') ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Consulta de Professor</h3>
@@ -19,9 +19,18 @@
                     </div>
                 </form>
                 <div>
-
-                    <table class='table' id='resultado'>
-
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <td>Matrícula</td>
+                                <td>Nome</td>
+                                <td>Endereço</td>
+                                <td>Telefone</td>
+                                <td>Sexo</td>
+                                <td>Data de Nascimento</td>
+                            </tr>
+                        </thead>
+                        <tbody id='resultado'></tbody>
                     </table>
 <!----------------------------------AJAX--------------------------------------->                    
                     <script src='../ajax/request.js'></script>
@@ -57,5 +66,9 @@
 
 
 <?php
-    include('../partials/rodape.php');
+    if (isset($_GET['message'])){ 
+        $message = $_GET['message'];
+        include('../messages/professor.message.php');
+    }
+    include('../includes/rodape.php');
 ?>

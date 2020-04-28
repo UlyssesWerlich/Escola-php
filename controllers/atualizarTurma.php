@@ -1,9 +1,6 @@
 <?php
     require_once '../database/connection.php';
-
-	$titulo = 'Atualização de Turma';
-    include('../partials/cabecalho.php');
-
+    $message = 4;
     if ((isset($_POST['idAula'])) and (isset($_POST['matriculas']))){
         $idAula = $_POST['idAula'];
         $matriculas = $_POST['matriculas'];
@@ -16,11 +13,6 @@
             $inserir->execute() or die ("Erro ao atualizar nova lista");
         }
         $pdo = null;
-        echo "<p>Turma atualizada com sucesso</p>";
     };
-?>
-    <p><a href='../views/consultaAula.php'>Consultar Aula</a></p>
-
-<?php
-    include('../partials/rodape.php');
+    header('Location: ../views/consultaAula.php?message='.$message);
 ?>

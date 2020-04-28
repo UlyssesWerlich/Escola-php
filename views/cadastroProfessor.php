@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../partials/header.php') ?>
+        <?php include('../includes/header.php') ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../partials/menu.php') ?>
+        <?php include('../includes/menu.php') ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Professor</h3>
@@ -57,5 +57,5 @@
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
 <?php
-    include('../partials/rodape.php');
+    include('../includes/rodape.php');
 ?>

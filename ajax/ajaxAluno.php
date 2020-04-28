@@ -1,32 +1,11 @@
-
-                        <tr>
-                            <td>Matrícula</td>
-                            <td>Nome</td>
-                            <td>Endereço</td>
-                            <td>Turma</td>
-                            <td>Turno</td>
-                            <td>Data de Nascimento</td>
-                        </tr>
-
 <?php
-
     if (isset($_GET['nomeConsulta']) || isset($_GET['turmaConsulta']) || isset($_GET['turnoConsulta'])){
-        try{
-            $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
         $nomeConsulta = $_GET['nomeConsulta'];
         $turmaConsulta = $_GET['turmaConsulta'];
         $turnoConsulta = $_GET['turnoConsulta'];
 
-        $consultar=$pdo->prepare("SELECT * from aluno 
-                                        where nome like '$nomeConsulta%' 
-                                            AND turma LIKE '$turmaConsulta%' 
-                                            AND turno LIKE '$turnoConsulta' ;");
-        $consultar->execute();
-    
-        $result = $consultar->fetchAll();
+        require_once '../dao/aluno.dao.php';
+        $result = toList($nomeConsulta, $turmaConsulta, $turnoConsulta);
 
         foreach ($result as $row) {
             $dataArray = explode("-", $row['dataNascimento']);
@@ -54,6 +33,5 @@
                     <td>$dataConvertida</td>
                 </tr>";
         } 
-        $pdo = null;
     }
 ?>

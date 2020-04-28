@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../partials/header.php') ?>
+        <?php include('../includes/header.php') ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../partials/menu.php') ?>
+        <?php include('../includes/menu.php') ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Alterar informações do Aluno</h3>
 
 <?php
-    require_once '../database/connection.php';
-
+    require_once '../dao/aluno.dao.php';
     $matricula = $_GET['matricula'];
-    $consulta = $pdo->prepare("select * from aluno where matricula like '$matricula'");
-    $consulta->execute();
-    $resultado = $consulta->fetchAll();
-
+    $resultado = find($matricula);
     foreach ($resultado as $row){
-    $checkedM = ($row['turno'] == 'M')?('checked'):('');
-    $checkedV = ($row['turno'] == 'V')?('checked'):('');
-    $checkedN = ($row['turno'] == 'N')?('checked'):('');
-
 ?>
                 <form name="form" method="POST" action="../controllers/atualizarAluno.php">
                     <div class='row'>
@@ -61,14 +53,14 @@
                         
                         <div class="checkbox col-sm-3">
                             <label>Selecione o turno do aluno</label>
-                            <label><input <?php echo "$checkedM"; ?> class="optradio" name="turno" type="radio" value="M"/>Matutivo</label>
-                            <label><input <?php echo "$checkedV"; ?> class='optradio' name='turno' type='radio' value='V'/>Vespertino</label>
-                            <label><input <?php echo "$checkedN";}; ?> class='optradio' name='turno' type='radio' value='N'>Noturno</label>
+                            <label><input <?php echo ($row['turno'] == 'M')?('checked'):(''); ?> class="optradio" name="turno" type="radio" value="M"/>Matutivo</label>
+                            <label><input <?php echo ($row['turno'] == 'V')?('checked'):(''); ?> class='optradio' name='turno' type='radio' value='V'/>Vespertino</label>
+                            <label><input <?php echo ($row['turno'] == 'N')?('checked'):('');} ?> class='optradio' name='turno' type='radio' value='N'>Noturno</label>
                         </div>
                     </div>
                     <input type="submit" class="btn btn-primary" name="botao" value="Alterar"/>
                     <input type="submit" class="btn btn-danger" name="botao" value="Excluir"/>
                 </form>
-<?php
-    include('../partials/rodape.php');
+<?php 
+    include('../includes/rodape.php');
 ?>

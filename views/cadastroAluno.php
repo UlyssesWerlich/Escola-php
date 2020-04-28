@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../partials/header.php') ?>
+        <?php include('../includes/header.php') ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../partials/menu.php') ?>
+        <?php include('../includes/menu.php') ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Aluno</h3>
@@ -50,5 +50,10 @@
                 </form>
 
 <?php
-    include('../partials/rodape.php');
+    if (isset($_GET['message'])){ 
+        $message = $_GET['message'];
+        include('../messages/aluno.message.php');
+    }
+    
+    include('../includes/rodape.php');
 ?>
