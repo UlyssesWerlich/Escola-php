@@ -11,6 +11,6 @@
                 <h3 class='mt-3'>Bem vindo</h3>
 
 <?php
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>
 

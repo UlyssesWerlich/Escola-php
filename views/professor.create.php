@@ -10,7 +10,7 @@
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Professor</h3>
                 
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/professor.controller.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
@@ -57,5 +57,5 @@
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
 <?php
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>

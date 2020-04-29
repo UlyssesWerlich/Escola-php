@@ -25,7 +25,7 @@
             }
 
             echo "<tr>
-                    <td><a href=alterarAluno.php?matricula=$row[matricula]>$row[matricula]</a></td>
+                    <td><a href=aluno.update.php?matricula=$row[matricula]>$row[matricula]</a></td>
                     <td>$row[nome]</td>
                     <td>$row[endereco]</td>
                     <td>$row[turma]</td>

@@ -10,7 +10,7 @@
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Aula</h3>
                 
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarAula.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/aula.controller.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='materia'>Matéria</label>
@@ -95,7 +95,7 @@
                 </form>
 
 <!----------------------------------AJAX--------------------------------------->                    
-                <script src='../ajax/request.js'></script>
+                <script src='../request/request.js'></script>
                 <script>
                     function getDados(){
                         var id = document.getElementById("idProfessor").value;
@@ -105,7 +105,7 @@
 
                             var result = document.getElementById("resultado");
                             var xmlreq = CriarRequest();
-                            xmlreq.open("GET", "../ajax/ajaxNomeProfessor.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
+                            xmlreq.open("GET", "../request/professor.findByName.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
 
                             xmlreq.onreadystatechange = function(){
                                 if (xmlreq.status == 200){
@@ -125,5 +125,5 @@
                     }
                 </script>
 <?php
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>

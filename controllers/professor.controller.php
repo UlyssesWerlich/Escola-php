@@ -28,5 +28,5 @@
 			break;
 	}
 
-	header('Location: ../views/consultaProfessor.php?message='.$message);
+	header('Location: ../views/professor.request.php?message='.$message);
 ?>

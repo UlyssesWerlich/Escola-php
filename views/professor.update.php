@@ -9,22 +9,14 @@
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Alterar informações do Professor</h3>
-
 <?php
-
-    require_once '../database/connection.php';
-
     $idProfessor = $_GET['idProfessor'];
-    $consulta = $pdo->prepare("select * from professor where idProfessor like '$idProfessor'");
-    $consulta->execute();
-    $resultado = $consulta->fetchAll();
+    require_once '../dao/professor.dao.php';
+    $resultado = find($idProfessor);
 
     foreach ($resultado as $row){
-        $sexo = $row['sexo'];
-        $checkedM = ( $sexo == 'M')?('checked'):('');
-        $checkedF = ( $sexo == 'F')?('checked'):('');
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarProfessor.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/professor.controller.php">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='nome'>Nome</label>
@@ -64,18 +56,18 @@
 
                         <div class="radio col-sm-3">
                             <label>Selecione o sexo do professor</label>
-                            <label><input <?php echo "$checkedM"; ?> class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
-                            <label><input <?php echo "$checkedF"; ?> class="optradio" name="sexo" type="radio" value="F">Feminino</label>
+                            <label><input <?php echo ( $row['sexo'] == 'M')?('checked'):(''); ?> class="optradio" name="sexo" type="radio" value="M" checked>Masculino</label>
+                            <label><input <?php echo ( $row['sexo'] == 'F')?('checked'):(''); ?> class="optradio" name="sexo" type="radio" value="F">Feminino</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for='formacao'>Formação</label>
-                        <textarea  placeholder='<?php echo "$row[formacao]";}; ?>' maxlength="400" name="formacao" id="formacao" rows='5' cols='60' class="form-control"></textarea>
+                        <textarea  placeholder='<?php echo "$row[formacao]"; ?>' maxlength="400" name="formacao" id="formacao" rows='5' cols='60' class="form-control"></textarea>
                     </div>
                     <input type='submit' name='botao' class="btn btn-primary" value='Alterar'>
                     <input type='submit' name='botao' class="btn btn-danger" value='Excluir'>
                 </form>
 <?php
-    include('../includes/rodape.php');
+    }; include('../includes/footer.php');
 ?>

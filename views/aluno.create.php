@@ -10,7 +10,7 @@
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Aluno</h3>
    
-                <form name="form" method="POST" action="../controllers/atualizarAluno.php">
+                <form name="form" method="POST" action="../controllers/aluno.controller.php">
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
@@ -55,5 +55,5 @@
         include('../messages/aluno.message.php');
     }
     
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>

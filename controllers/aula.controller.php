@@ -30,5 +30,5 @@
 			$message = remove($idAula);
 			break;
 	}
-	header('Location: ../views/consultaAula.php?message='.$message);
+	header('Location: ../views/aula.request.php?message='.$message);
 ?>

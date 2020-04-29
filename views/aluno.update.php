@@ -16,7 +16,7 @@
     $resultado = find($matricula);
     foreach ($resultado as $row){
 ?>
-                <form name="form" method="POST" action="../controllers/atualizarAluno.php">
+                <form name="form" method="POST" action="../controllers/aluno.controller.php">
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='matricula'>Matrícula</label>
@@ -62,5 +62,5 @@
                     <input type="submit" class="btn btn-danger" name="botao" value="Excluir"/>
                 </form>
 <?php 
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>

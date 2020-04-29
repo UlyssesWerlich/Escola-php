@@ -67,11 +67,9 @@
                         <tbody id='resultado'></tbody>
                     </table>
 <!----------------------------------AJAX--------------------------------------->                    
-                    <script src='../ajax/request.js'></script>
+                    <script src='../request/request.js'></script>
                     <script>
                         function getDados(){
-
-                            // Declaração de Variáveis
                             var materia = document.getElementById("materiaConsulta").value
                             var curso = document.getElementById("cursoConsulta").value;
                             var professor = document.getElementById("professorConsulta").value;
@@ -83,17 +81,13 @@
                                 var result = document.getElementById("resultado");
                                 var xmlreq = CriarRequest();
 
-                                // Iniciar uma requisição
-                                xmlreq.open("GET", "../ajax/ajaxAula.php?" + 
+                                xmlreq.open("GET", "../request/aula.find.php?" + 
                                                     "materiaConsulta=" + materia + 
                                                     "&cursoConsulta=" + curso + 
                                                     "&professorConsulta=" + professor +
                                                     "&diaSemana=" + diaSemana +
                                                     "&turno=" + turno, true);
-
-                                // Atribui uma função para ser executada sempre que houver uma mudança de ado
                                 xmlreq.onreadystatechange = function(){
-                                    // Verifica se o arquivo foi encontrado com sucesso
                                     if (xmlreq.status == 200){
                                         result.innerHTML = xmlreq.responseText;
                                     } else {
@@ -106,13 +100,12 @@
                             }
                         }
                     </script>
-
 <?php
     if (isset($_GET['message'])){ 
         $message = $_GET['message'];
-        include('../messages/aluno.message.php');
+        include('../messages/aula.message.php');
     }
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>
                 
                 

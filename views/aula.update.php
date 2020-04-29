@@ -16,7 +16,7 @@
     $resultado = find($idAula);
     foreach ($resultado as $row){
 ?>
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarAula.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/aula.controller.php">
                     <input type='hidden' name='idAula' value='<?php echo $row['idAula'] ?>'/>
 
                     <div class='row'>
@@ -113,7 +113,7 @@
             document.getElementById('turno').value = turno;
         </script>
         <!----------------------------------AJAX--------------------------------------->                    
-        <script src='../ajax/request.js'></script>
+        <script src='../request/request.js'></script>
         <script>
             function getDados(){
                 var id = document.getElementById("idProfessor").value;
@@ -123,7 +123,7 @@
 
                     var result = document.getElementById("resultado");
                     var xmlreq = CriarRequest();
-                    xmlreq.open("GET", "../ajax/ajaxNomeProfessor.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
+                    xmlreq.open("GET", "../request/professor.findByName.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
 
                     xmlreq.onreadystatechange = function(){
                         if (xmlreq.status == 200){
@@ -145,5 +145,5 @@
 
 <?php
     }
-    include('../includes/rodape.php');
+    include('../includes/footer.php');
 ?>

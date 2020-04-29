@@ -56,5 +56,4 @@
         $result = $findByName->fetchAll();
         $pdo = null;
         return $result;
-
     }

@@ -1,5 +1,5 @@
 <?php
-    header("Location: views/paginaInicial.php");
+    header("Location: views/index.php");
 ?>
 
 

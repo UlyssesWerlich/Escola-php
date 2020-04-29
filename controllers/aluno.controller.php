@@ -26,5 +26,5 @@
 			break;
 	} 
 
-	header('Location: ../views/consultaAluno.php?message='.$message);
+	header('Location: ../views/aluno.request.php?message='.$message);
 ?>

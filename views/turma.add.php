@@ -34,7 +34,7 @@
                 <br/>
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/atualizarTurma.php">
+                <form class="form-horizontal" name="form" method="POST" action="../controllers/turma.controller.php">
                     <input type='hidden' name='idAula' value='<?php echo $idAula ?>'/>
                     <table class='table' id='listaAlunos'>
                         <tr>
@@ -43,47 +43,30 @@
                             <td>Nome</td>
                         </tr>
 <?php
-            try {
-                $pdo=new PDO("mysql:host=localhost;dbname=escola","root","password");
-            } catch (PDOException $e){
-                echo $e->getMessage();
-            }
-            $consulta = $pdo->prepare("SELECT t.matricula as matricula, a.nome as nome from turma t join aluno a on t.matricula = a.matricula 
-                                            where idAula = '$idAula'");
-            $consulta->execute();
-            $alunos = $consulta->fetchAll();
-            foreach ($alunos as $aluno){ ?>
-
+            require_once '../dao/turma.dao.php';
+            $alunos = toList($idAula);
+            foreach ($alunos as $aluno){ 
+?>
                 <tr>
                     <td><button class='btn btn-danger' onclick='removerLinha(this)'>Remover</button></td>
                     <td><?php echo $aluno['matricula'] ?><input type='hidden' name='matriculas[]' value='<?php echo $aluno['matricula'] ?>'/></td>
-                    <td><?php echo $aluno['nome'] ?></td>
+                    <td><?php echo $aluno['nome']; ?></td>
                 </tr>
-            <?php
-            
-            }
-            $pdo=null;
-
-?>
+<?php } ?>
                     </table>
                 </form>
 
     <!----------------------------------AJAX + FUNÇÕES JAVASCRIPT--------------------------------------->                    
-                <script src='../ajax/request.js'></script>
+                <script src='../request/request.js'></script>
                 <script>
                     function getDados(){
-                        // Declaração de Variáveis
                         var valor = document.getElementById("valorConsulta").value;
+
                         if (valor.length > 2) {
                             var resultado = document.getElementById("resultado");
                             var xmlreq = CriarRequest();
-                            // Iniciar uma requisição
-                            xmlreq.open("GET", "../ajax/ajaxAulaAluno.php?valorConsulta=" + valor, true);
-
-                            // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                            xmlreq.open("GET", "../request/aluno.findByName.php?valorConsulta=" + valor, true);
                             xmlreq.onreadystatechange = function(){
-
-                                // Verifica se o arquivo foi encontrado com sucesso
                                 if (xmlreq.status == 200){
                                     resultado.innerHTML = xmlreq.responseText;
                                 } else {
@@ -114,7 +97,6 @@
     } else {
 ?>
         <h5>Erro ao cadastrar turma, favor retornar a página</h5>
-<?php
-    }
-    include('../includes/rodape.php');
+<?php   }
+    include('../includes/footer.php');
 ?>

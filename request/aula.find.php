@@ -11,15 +11,12 @@
     foreach ($result as $row) {
 ?>
         <tr>
-            <td><a href='alterarAula.php?idAula=<?php echo $row['idAula'] ?>' ><?php echo $row['materia'] ?></a></td>
+            <td><a href='aula.update.php?idAula=<?php echo $row['idAula'] ?>' ><?php echo $row['materia'] ?></a></td>
             <td><?php echo $row['curso'] ?></td>
             <td><?php echo $row['diaSemana'] ?></td>
             <td><?php echo $row['professor'] ?></td>
             <td><?php echo $row['horaInicio'] ?></td>
             <td><?php echo $row['horaTermino'] ?></td>
-            <td><a href='cadastroTurma.php?idAula=<?php echo $row['idAula'] ?>&materia=<?php echo $row['materia'] ?>&curso=<?php echo $row['curso'] ?>'>Lista de alunos</a></td>
+            <td><a href='turma.add.php?idAula=<?php echo $row['idAula'] ?>&materia=<?php echo $row['materia'] ?>&curso=<?php echo $row['curso'] ?>'>Lista de alunos</a></td>
         </tr>
-
-<?php
-    }
-?>
+<?php   }   ?>
