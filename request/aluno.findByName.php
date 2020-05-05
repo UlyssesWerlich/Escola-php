@@ -1,16 +1,16 @@
 <?php
-    if (!empty($_GET['valorConsulta'])){
-        $valorConsulta = $_GET['valorConsulta'];
+    if (!empty($_GET['nome'])){
 
-        require_once '../dao/aluno.dao.php';
-        $result = findByName($valorConsulta);
+        include '../models/aluno.model.php';
+        $aluno = new Aluno($_GET);
+        $resultado = $aluno->findByName();
 
-        foreach ($result as $row) {
+        foreach ($resultado as $linha) {
 ?>
             <tr>
-                <td><a href="javascript:adicionarAluno('<?php echo $row['matricula'] ?>', '<?php echo $row['nome'] ?>')">Adicionar Aluno</a></td>
-                <td><?php echo $row['matricula'] ?></td>
-                <td><?php echo $row['nome'] ?></td>
+                <td><a href="javascript:adicionarAluno('<?php echo $linha['matricula'] ?>', '<?php echo $linha['nome'] ?>')">Adicionar Aluno</a></td>
+                <td><?php echo $linha['matricula'] ?></td>
+                <td><?php echo $linha['nome'] ?></td>
             </tr>
 <?php
         }

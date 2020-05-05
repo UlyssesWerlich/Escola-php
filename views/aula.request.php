@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Consulta de Aula</h3>
@@ -82,9 +82,9 @@
                                 var xmlreq = CriarRequest();
 
                                 xmlreq.open("GET", "../request/aula.find.php?" + 
-                                                    "materiaConsulta=" + materia + 
-                                                    "&cursoConsulta=" + curso + 
-                                                    "&professorConsulta=" + professor +
+                                                    "materia=" + materia + 
+                                                    "&curso=" + curso + 
+                                                    "&professorNome=" + professor +
                                                     "&diaSemana=" + diaSemana +
                                                     "&turno=" + turno, true);
                                 xmlreq.onreadystatechange = function(){
@@ -100,12 +100,11 @@
                             }
                         }
                     </script>
+<?php if (isset($message)){ ?>
+        <script>alert("<?php echo $message; ?>");</script> 
 <?php
-    if (isset($_GET['message'])){ 
-        $message = $_GET['message'];
-        include('../messages/aula.message.php');
     }
-    include('../includes/footer.php');
+    require 'includes/footer.php';
 ?>
                 
                 

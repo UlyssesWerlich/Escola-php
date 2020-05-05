@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Consulta de Professor</h3>
@@ -37,15 +37,12 @@
                     <script>
                         function getDados(){
 
-                            // Declaração de Variáveis
                             var nome = document.getElementById("nomeConsulta").value;
                             if (nome.length > 2) {
 
                                 var result = document.getElementById("resultado");
                                 var xmlreq = CriarRequest();
-
-                                // Iniciar uma requisição
-                                xmlreq.open("GET", "../request/professor.find.php?nomeConsulta=" + nome, true);
+                                xmlreq.open("GET", "../request/professor.find.php?nome=" + nome, true);
                                 xmlreq.onreadystatechange = function(){
                                     if (xmlreq.status == 200){
                                         result.innerHTML = xmlreq.responseText;
@@ -59,10 +56,9 @@
                             }
                         }
                     </script>
+<?php if (isset($message)){ ?>
+        <script>alert("<?php echo $message; ?>");</script> 
 <?php
-    if (isset($_GET['message'])){ 
-        $message = $_GET['message'];
-        include('../messages/professor.message.php');
     }
-    include('../includes/footer.php');
+    require 'includes/footer.php';
 ?>

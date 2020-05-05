@@ -1,22 +1,26 @@
 <?php
-    $materiaConsulta = $_GET['materiaConsulta'];
-    $cursoConsulta = $_GET['cursoConsulta'];
-    $professorConsulta = $_GET['professorConsulta'];
-    $diaSemana = $_GET['diaSemana'];
-    $turno = $_GET['turno'];
 
-    require_once '../dao/aula.dao.php';
-    $result = toList($materiaConsulta, $cursoConsulta, $professorConsulta, $diaSemana, $turno);
+    if (isset($_GET['materia']) || isset($_GET['curso']) 
+    || isset($_GET['turno']) || isset($_GET['turno']) || isset($_GET['turno'])){
 
-    foreach ($result as $row) {
+        include '../models/aula.model.php';
+        $aula = new Aula($_GET);
+        $professorNome = $_GET['professorNome'];
+        $resultado = $aula->toList($professorNome);
+    
+        foreach ($resultado as $linha) {
 ?>
-        <tr>
-            <td><a href='aula.update.php?idAula=<?php echo $row['idAula'] ?>' ><?php echo $row['materia'] ?></a></td>
-            <td><?php echo $row['curso'] ?></td>
-            <td><?php echo $row['diaSemana'] ?></td>
-            <td><?php echo $row['professor'] ?></td>
-            <td><?php echo $row['horaInicio'] ?></td>
-            <td><?php echo $row['horaTermino'] ?></td>
-            <td><a href='turma.add.php?idAula=<?php echo $row['idAula'] ?>&materia=<?php echo $row['materia'] ?>&curso=<?php echo $row['curso'] ?>'>Lista de alunos</a></td>
-        </tr>
-<?php   }   ?>
+            <tr>
+                <td><a href='?controller=Aula&method=edit&idAula=<?php echo $linha['idAula'] ?>' ><?php echo $linha['materia'] ?></a></td>
+                <td><?php echo $linha['curso'] ?></td>
+                <td><?php echo $linha['diaSemana'] ?></td>
+                <td><?php echo $linha['professor'] ?></td>
+                <td><?php echo $linha['horaInicio'] ?></td>
+                <td><?php echo $linha['horaTermino'] ?></td>
+                <td><a href='?controller=Turma&method=edit&idAula=<?php echo $linha['idAula'] ?>&materia=<?php echo $linha['materia'] ?>&curso=<?php echo $linha['curso'] ?>'>Lista de alunos</a></td>
+            </tr>
+<?php   }   
+    }
+?>
+
+    

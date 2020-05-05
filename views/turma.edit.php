@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Atualizar Turma</h3>
-
-<?php
-    if ((isset($_GET['idAula'])) and (isset($_GET['materia'])) and (isset($_GET['curso']))){
-
-        $idAula = $_GET['idAula'];
-        $materia = $_GET['materia'];
-        $curso = $_GET['curso'];
-?>
                 <br/>
                 <h5>Consulta de Aluno</h5>
                 <form>
@@ -34,7 +26,7 @@
                 <br/>
 
                 <h5>Lista de Alunos cadastrados na Aula</h5>
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/turma.controller.php">
+                <form class="form-horizontal" name="form" method="POST" action="?controller=turma&method=update">
                     <input type='hidden' name='idAula' value='<?php echo $idAula ?>'/>
                     <table class='table' id='listaAlunos'>
                         <tr>
@@ -43,8 +35,6 @@
                             <td>Nome</td>
                         </tr>
 <?php
-            require_once '../dao/turma.dao.php';
-            $alunos = toList($idAula);
             foreach ($alunos as $aluno){ 
 ?>
                 <tr>
@@ -65,7 +55,7 @@
                         if (valor.length > 2) {
                             var resultado = document.getElementById("resultado");
                             var xmlreq = CriarRequest();
-                            xmlreq.open("GET", "../request/aluno.findByName.php?valorConsulta=" + valor, true);
+                            xmlreq.open("GET", "../request/aluno.findByName.php?nome=" + valor, true);
                             xmlreq.onreadystatechange = function(){
                                 if (xmlreq.status == 200){
                                     resultado.innerHTML = xmlreq.responseText;
@@ -93,10 +83,6 @@
                         document.getElementById('listaAlunos').deleteRow(i);
                     }
                 </script>
-<?php
-    } else {
-?>
-        <h5>Erro ao cadastrar turma, favor retornar a página</h5>
-<?php   }
-    include('../includes/footer.php');
+<?php 
+    require 'includes/footer.php';
 ?>

@@ -1,18 +1,17 @@
 <?php
-    if (isset($_GET['nomeConsulta']) || isset($_GET['turmaConsulta']) || isset($_GET['turnoConsulta'])){
-        $nomeConsulta = $_GET['nomeConsulta'];
-        $turmaConsulta = $_GET['turmaConsulta'];
-        $turnoConsulta = $_GET['turnoConsulta'];
+    if (isset($_GET['nome']) || isset($_GET['turma']) || isset($_GET['turno'])){
 
-        require_once '../dao/aluno.dao.php';
-        $result = toList($nomeConsulta, $turmaConsulta, $turnoConsulta);
+        include '../models/aluno.model.php';
+        $aluno = new Aluno($_GET);
 
-        foreach ($result as $row) {
-            $dataArray = explode("-", $row['dataNascimento']);
-            $dataConvertida = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];
+        $resultado = $aluno->toList();
+
+        foreach ($resultado as $linha) {
+            $dataArray = explode("-", $linha['dataNascimento']);
+            $dataNascimento = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];
 
             $turno;
-            switch ($row['turno']) {
+            switch ($linha['turno']) {
                 case 'M':
                     $turno = 'Matutino';
                     break;
@@ -25,12 +24,12 @@
             }
 
             echo "<tr>
-                    <td><a href=aluno.update.php?matricula=$row[matricula]>$row[matricula]</a></td>
-                    <td>$row[nome]</td>
-                    <td>$row[endereco]</td>
-                    <td>$row[turma]</td>
+                    <td><a href=?controller=Aluno&method=edit&matricula=$linha[matricula]>$linha[matricula]</a></td>
+                    <td>$linha[nome]</td>
+                    <td>$linha[endereco]</td>
+                    <td>$linha[turma]</td>
                     <td>$turno</td>
-                    <td>$dataConvertida</td>
+                    <td>$dataNascimento</td>
                 </tr>";
         } 
     }

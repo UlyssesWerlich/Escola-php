@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Aula</h3>
                 
-                <form class="form-horizontal" name="form" method="POST" action="../controllers/aula.controller.php">
+                <form class="form-horizontal" name="form" method="POST" action="?controller=Aula&method=save">
                     <div class='row'>
                         <div class="form-group col-sm-8">
                             <label class="control-label" for='materia'>Matéria</label>
@@ -105,7 +105,7 @@
 
                             var result = document.getElementById("resultado");
                             var xmlreq = CriarRequest();
-                            xmlreq.open("GET", "../request/professor.findByName.php?nomeConsulta=" + nome + "&idConsulta=" + id, true);
+                            xmlreq.open("GET", "../request/professor.findByName.php?nome=" + nome + "&idProfessor=" + id, true);
 
                             xmlreq.onreadystatechange = function(){
                                 if (xmlreq.status == 200){
@@ -124,6 +124,9 @@
                         }
                     }
                 </script>
+<?php if (isset($message)){ ?>
+        <script>alert("<?php echo $message; ?>");</script> 
 <?php
-    include('../includes/footer.php');
+    }
+    require 'includes/footer.php';
 ?>

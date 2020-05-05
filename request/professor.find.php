@@ -1,19 +1,20 @@
 <?php
-    if (isset($_GET['nomeConsulta'])){
-        require_once '../dao/professor.dao.php';
-        $nomeConsulta = $_GET['nomeConsulta'];
-        $result = toList($nomeConsulta);
-        foreach ($result as $row) {
-            $dataArray = explode("-", $row['dataNascimento']);
-            $dataConvertida = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];
+    if (isset($_GET['nome'])){
+        include '../models/professor.model.php';
+        $professor = new Professor($_GET);
+        $resultado = $professor->toList();
+
+        foreach ($resultado as $linha) {
+            $dataArray = explode("-", $linha['dataNascimento']);
+            $dataNascimento = $dataArray[2]."/".$dataArray[1]."/".$dataArray[0];
             
             echo "<tr>
-                    <td><a href=professor.update.php?idProfessor=$row[idProfessor]>$row[idProfessor]</a></td>
-                    <td>$row[nome]</td>
-                    <td>$row[endereco]</td>
-                    <td>$row[telefone]</td>
-                    <td>$row[sexo]</td>
-                    <td>$dataConvertida</td>
+                    <td><a href=?controller=Professor&method=edit&idProfessor=$linha[idProfessor]>$linha[idProfessor]</a></td>
+                    <td>$linha[nome]</td>
+                    <td>$linha[endereco]</td>
+                    <td>$linha[telefone]</td>
+                    <td>$linha[sexo]</td>
+                    <td>$dataNascimento</td>
                 </tr>";
         }
     }

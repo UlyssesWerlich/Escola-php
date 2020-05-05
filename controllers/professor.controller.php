@@ -1,32 +1,41 @@
 <?php
-	require_once '../dao/professor.dao.php';
 
-	$nome = $_POST['nome'];
-	$endereco = $_POST['endereco'];
-	$cpf = $_POST['cpf'];
-	$telefone = $_POST['telefone'];
-	$sexo = $_POST['sexo'];
-	$dataNascimento = $_POST['dataNascimento'];
-	$formacao = $_POST['formacao'];
-	$botao = $_POST['botao'];
+	class ProfessorController{
 
-	$message = null;
+		public static function create(){
+			include 'views/professor.create.php';
+		}
 
-	switch ($botao) {
-		case 'Cadastrar':
-			$message = create($nome, $endereco, $cpf, $telefone, $sexo, $dataNascimento, $formacao);
-			break;
+		public static function request(){
+			include 'views/professor.request.php';
+		}
 
-		case 'Alterar':
-			$idProfessor = $_POST['idProfessor'];
-			$message = edit($idProfessor, $nome, $endereco, $cpf, $telefone, $sexo, $dataNascimento, $formacao);
-			break;
+		public static function edit(){
+			include 'models/professor.model.php';
+			$professor = new Professor($_GET);
+			$resultado = $professor->find();
+			include 'views/professor.update.php';
+		}
 
-		case 'Excluir':
-			$idProfessor = $_POST['idProfessor'];
-			$message = remove($idProfessor);
-			break;
+		public static function save(){
+			include 'models/professor.model.php';
+			$professor = new Professor($_POST);
+			$message = $professor->create();
+			include 'views/professor.create.php';
+		}
+
+		public static function update(){
+			include 'models/professor.model.php';
+			$professor = new Professor($_POST);
+			$message = $professor->edit();
+			include 'views/professor.request.php';
+		}
+
+		public static function delete(){
+			include 'models/professor.model.php';
+			$professor = new Professor($_POST);
+			$message = $professor->remove();
+			include 'views/professor.request.php';
+		}
 	}
-
-	header('Location: ../views/professor.request.php?message='.$message);
 ?>

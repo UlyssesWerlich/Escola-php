@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Cadastro de Aluno</h3>
    
-                <form name="form" method="POST" action="../controllers/aluno.controller.php">
+                <form name="form" method="POST" action="?controller=Aluno&method=save">
 
                     <div class='row'>
                         <div class="form-group col-sm-8">
@@ -49,11 +49,9 @@
                     <input type="submit" class="btn btn-success" name="botao" value="Cadastrar"/>
                 </form>
 
+<?php if (isset($message)){ ?>
+        <script>alert("<?php echo $message; ?>");</script> 
 <?php
-    if (isset($_GET['message'])){ 
-        $message = $_GET['message'];
-        include('../messages/aluno.message.php');
     }
-    
-    include('../includes/footer.php');
+    require 'includes/footer.php';
 ?>

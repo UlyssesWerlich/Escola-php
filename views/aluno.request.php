@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include('../includes/header.php') ?>
+        <?php require 'includes/header.php' ?>
     </head>
     <body>
         <div class='d-flex'>
-        <?php include('../includes/menu.php') ?>
+        <?php require 'includes/menu.php' ?>
 
            <div class='container-fluid'>
                 <h3 class='mt-3'>Consulta de Aluno</h3>
 
-                <form method='POST' action='../controllers/aluno.request.php'>
+                <form method='POST'>
                     <div class='row'>
                         <div class="form-group col-sm-4">
                             <label class="control-label" for='nomeConsulta'>Nome</label>
@@ -29,8 +29,6 @@
                                 <option value="V">Vespertino</option>
                                 <option value="N">Noturno</option>
                             </select>
-
-                            <!-- <input type='text' onkeyup='getDados()' class="form-control" id='turnoConsulta' name='turnoConsulta'/> -->
                         </div>
                     </div>
                 </form>
@@ -60,14 +58,8 @@
 
                                 var result = document.getElementById("resultado");
                                 var xmlreq = CriarRequest();
-
-                                // Iniciar uma requisição
-                                xmlreq.open("GET", "../request/aluno.find.php?nomeConsulta=" + nome + "&turmaConsulta=" + turma +"&turnoConsulta=" + turno, true);
-
-                                // Atribui uma função para ser executada sempre que houver uma mudança de ado
+                                xmlreq.open("GET", "../request/aluno.find.php?nome=" + nome + "&turma=" + turma +"&turno=" + turno, true);
                                 xmlreq.onreadystatechange = function(){
-
-                                    // Verifica se o arquivo foi encontrado com sucesso
                                     if (xmlreq.status == 200){
                                         result.innerHTML = xmlreq.responseText;
                                     } else {
@@ -81,13 +73,9 @@
                         }
                     </script>
 
+<?php if (isset($message)){ ?>
+        <script>alert("<?php echo $message; ?>");</script> 
 <?php
-    if (isset($_GET['message'])){ 
-        $message = $_GET['message'];
-        include('../messages/aluno.message.php');
     }
-
-    include('../includes/footer.php');
+    require 'includes/footer.php';
 ?>
-                
-                
